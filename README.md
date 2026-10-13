@@ -6,7 +6,10 @@ Course materials for the O'Reilly live training *Claude Certified Architect – 
 
 | Path | What it is |
 |---|---|
+| `study-guide.html` | The whole course on one page: blueprint, domain lessons, all 60 practice questions, exercises, strategy, quick reference, and resources. Open in a browser. |
+| `exam-guide.html` | Interactive companion to the official exam guide: blueprint self-assessment, official sample questions, and exam policies |
 | `presentation/claude-architect-pro-exam-prep.html` | Live slide deck (remark.js). Open in a browser; press `P` for presenter notes. |
+| `presentation/claude-architect-pro-exam-prep.pdf` | PDF export of the slide deck |
 | `lessons/` | One markdown lesson per exam domain, with verbatim objectives, decision tables, traps, and self-checks |
 | `exercises/` | Eight hands-on exercises (design drills with reference answers) plus two runnable scripts in `exercises/scripts/` |
 | `questions/practice-questions.md` | 60 original exam-style questions weighted by domain, with answers and distractor analysis |

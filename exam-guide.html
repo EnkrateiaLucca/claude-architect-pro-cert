@@ -1,0 +1,761 @@
+<meta charset="utf-8">
+<title>CCAR-P Exam Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@500&family=Public+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --bg:#F4F6F6; --surface:#FFFFFF; --surface-2:#E8EEED; --ink:#14201E; --ink-2:#3B4946; --muted:#5E6C68; --line:#D3DCDA;
+  --accent:#0B6B66; --accent-soft:#DDEFEC; --on-accent:#FFFFFF; --seg:#C3D0CD; --seg-hover:#A7BAB6;
+  --good:#1D7A43; --good-soft:#E2F2E8; --bad:#B23A27; --bad-soft:#F9E5E0; --warn:#8F5B00; --warn-soft:#F6ECD6;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1514; --surface:#151F1E; --surface-2:#1E2A28; --ink:#E4ECEA; --ink-2:#BCC8C5; --muted:#8E9D99; --line:#2A3735;
+    --accent:#57C2B8; --accent-soft:#173533; --on-accent:#06201E; --seg:#33433F; --seg-hover:#465A55;
+    --good:#5CC587; --good-soft:#15301F; --bad:#EE7F6B; --bad-soft:#3A1D17; --warn:#E2B451; --warn-soft:#33280F;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1514; --surface:#151F1E; --surface-2:#1E2A28; --ink:#E4ECEA; --ink-2:#BCC8C5; --muted:#8E9D99; --line:#2A3735;
+  --accent:#57C2B8; --accent-soft:#173533; --on-accent:#06201E; --seg:#33433F; --seg-hover:#465A55;
+  --good:#5CC587; --good-soft:#15301F; --bad:#EE7F6B; --bad-soft:#3A1D17; --warn:#E2B451; --warn-soft:#33280F;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:880px;margin:0 auto;padding-inline:20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h2{font-size:28px;font-weight:700}
+h3{font-size:20px;font-weight:600}
+h4{font-family:var(--f-body);font-size:16px;font-weight:700;margin-top:8px}
+p{margin:0}
+.eyebrow{font:500 12px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.small{font-size:15px}
+.muted{color:var(--muted)}
+.prose{max-width:66ch;color:var(--ink-2)}
+ul,ol{margin:0;padding-left:1.2em}
+li+li{margin-top:6px}
+[id]{scroll-margin-top:72px}
+
+/* hero */
+.hero{padding-block:44px 28px;display:grid;gap:16px}
+.hero h1{font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-.015em;max-width:18ch}
+.hero .lead{max-width:62ch;color:var(--ink-2);font-size:18px}
+.facts{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:8px 0 0}
+.facts>div{background:var(--surface);padding:14px 16px;display:grid;gap:2px;align-content:start}
+.facts dt{font:500 11px/1.4 var(--f-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.facts dd{margin:0;display:grid}
+.facts b{font:700 26px/1.2 var(--f-display);font-variant-numeric:tabular-nums}
+.facts small{font-size:13px;color:var(--muted);line-height:1.35}
+@media (max-width:760px){.facts{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.facts{grid-template-columns:repeat(2,1fr)}}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.tabs button{appearance:none;border:0;background:none;color:var(--muted);font:600 15px/1 var(--f-body);padding:16px 12px 14px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs button:first-child{padding-left:0}
+.panel{padding-block:32px 56px;display:grid;gap:20px}
+.panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.panel-head+.panel-head,.prose+.panel-head{margin-top:20px}
+
+/* buttons */
+.ghost{appearance:none;background:none;border:1px solid var(--line);color:var(--ink-2);font:600 14px/1 var(--f-body);padding:9px 14px;border-radius:8px;cursor:pointer}
+.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.link{appearance:none;background:none;border:0;padding:0;color:var(--accent);font:600 15px var(--f-body);cursor:pointer;text-decoration:underline;text-underline-offset:3px;justify-self:start}
+
+/* folds (progressive disclosure) */
+.folds{border-top:1px solid var(--line)}
+.fold{border-bottom:1px solid var(--line)}
+.fold>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;column-gap:16px;padding:18px 4px}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::after{content:"";grid-column:-2;grid-row:1/span 2;align-self:center;width:9px;height:9px;margin:0 6px 4px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+.fold[open]>summary::after{transform:rotate(-135deg);margin-bottom:-4px}
+.fold>summary:hover .ft{color:var(--accent)}
+.ft{font-weight:700;font-size:18px;line-height:1.35}
+.fs{grid-column:1;color:var(--muted);font-size:15px;line-height:1.45}
+.fb{padding:0 4px 24px;display:grid;gap:14px;max-width:70ch;color:var(--ink-2)}
+
+/* overview */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.split{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.who{display:grid;gap:10px}
+.who ul{list-style:none;padding:0}
+.who li{padding-left:26px;position:relative}
+.who li::before{position:absolute;left:0;top:0;font-weight:700}
+.who.yes li::before{content:"✓";color:var(--good)}
+.who.no li::before{content:"✕";color:var(--bad)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0}
+.chips li{margin:0;font-size:13px;padding:3px 10px;border-radius:99px;background:var(--surface-2);color:var(--ink-2)}
+.checks{list-style:none;padding:0;display:grid;gap:8px}
+.checks li{margin:0}
+.checks label{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;cursor:pointer}
+.checks input{width:18px;height:18px;margin:4px 0 0;accent-color:var(--accent)}
+.checks input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.note{font-size:15px;background:var(--surface-2);border-radius:8px;padding:12px 14px;color:var(--ink-2)}
+.note.warn{background:var(--warn-soft);color:var(--ink)}
+.note.bad{background:var(--bad-soft);color:var(--ink)}
+.table-scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--ink);white-space:nowrap;width:1%}
+td{color:var(--ink-2)}
+
+/* blueprint */
+.wbar-wrap{position:relative;margin-top:8px}
+.wbar{display:flex;gap:2px;height:64px}
+.seg{appearance:none;border:0;min-width:0;padding:8px 0 8px 8px;background:var(--seg);color:var(--ink);cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;text-align:left;overflow:hidden;font:500 12px/1.1 var(--f-mono);transition:background .15s}
+.seg:first-child{border-radius:6px 0 0 6px}
+.seg:last-child{border-radius:0 6px 6px 0}
+.seg b{font-weight:500}
+.seg span{color:var(--ink-2)}
+.seg:hover{background:var(--seg-hover)}
+.seg.on{background:var(--accent);color:var(--on-accent)}
+.seg.on span{color:var(--on-accent)}
+.tip{position:absolute;bottom:calc(100% + 8px);max-width:100%;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.4;padding:6px 10px;border-radius:6px;pointer-events:none;white-space:normal}
+.ready{display:grid;gap:12px}
+.ready-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.ready-num{font:700 34px/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.ready-num small{font:400 14px var(--f-body);color:var(--muted);margin-left:6px}
+.meter{display:block;height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .3s}
+.meter.big{height:10px}
+.dom>summary{grid-template-columns:auto 1fr auto auto;align-items:center}
+.dom>summary::after{grid-column:4}
+.dnum{grid-row:1/span 2;align-self:start;font:500 13px/1 var(--f-mono);padding:6px 8px;border-radius:6px;background:var(--surface-2);color:var(--ink-2);margin-top:2px}
+.dom[open] .dnum{background:var(--accent);color:var(--on-accent)}
+.dt{display:grid;gap:2px;grid-row:1/span 2}
+.dready{grid-column:3;grid-row:1/span 2;display:flex;align-items:center;gap:8px;font:500 13px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.dready .meter{width:64px}
+.dready .pct{min-width:4ch;text-align:right}
+@media (max-width:560px){
+  .dom>summary{grid-template-columns:auto 1fr auto}
+  .dom>summary::after{grid-column:3}
+  .dt{grid-row:1}
+  .dready{grid-column:2;grid-row:2;margin-top:8px}
+}
+.objs{list-style:none;padding:0 4px 20px;margin:0}
+.obj{margin:0;display:grid;grid-template-columns:1fr auto;gap:8px 20px;align-items:center;padding:12px 0;border-top:1px dashed var(--line);color:var(--ink-2)}
+@media (max-width:560px){.obj{grid-template-columns:1fr}}
+.rate{position:relative;display:inline-flex;gap:2px;margin:0;padding:3px;border:1px solid var(--line);border-radius:9px;min-width:0;justify-self:start;background:var(--surface)}
+.rate input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.rate label{font-size:13px;font-weight:600;padding:5px 10px;border-radius:6px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.rate label:hover{color:var(--ink)}
+.rate input[value="0"]:checked+label{background:var(--seg);color:var(--ink)}
+.rate input[value="1"]:checked+label{background:var(--accent-soft);color:var(--accent)}
+.rate input[value="2"]:checked+label{background:var(--accent);color:var(--on-accent)}
+.rate input:focus-visible+label{outline:2px solid var(--accent);outline-offset:1px}
+
+/* practice */
+#qs{display:grid;gap:16px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;gap:14px}
+.stem{font-size:18px;color:var(--ink);max-width:68ch}
+.opts{display:grid;gap:8px}
+.opt{appearance:none;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start;text-align:left;width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--ink);font:400 16px/1.5 var(--f-body);cursor:pointer;transition:border-color .15s}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default;opacity:.55}
+.opt.right,.opt.wrong{opacity:1}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.key{font:500 13px/1 var(--f-mono);width:26px;height:26px;display:grid;place-items:center;border-radius:6px;background:var(--surface-2);color:var(--ink-2)}
+.tag{grid-column:2;font:600 13px var(--f-body)}
+.opt.right .tag{color:var(--good)}
+.opt.wrong .tag{color:var(--bad)}
+.fb-q{display:grid;gap:8px;border-left:3px solid var(--line);padding-left:14px;color:var(--ink-2);max-width:70ch}
+.verdict{font-weight:700;color:var(--ink)}
+.verdict.good{color:var(--good)}
+.verdict.bad{color:var(--bad)}
+
+/* policies */
+.scale{padding-top:4px;padding-bottom:30px;position:relative}
+.scale-bar{display:flex;gap:2px;height:30px;font:600 13px/30px var(--f-body)}
+.scale-bar span{padding-inline:10px;overflow:hidden;white-space:nowrap}
+.scale-bar .fail{flex:620;background:var(--seg);color:var(--ink-2);border-radius:6px 0 0 6px}
+.scale-bar .pass{flex:280;background:var(--accent);color:var(--on-accent);border-radius:0 6px 6px 0}
+.scale-marks span{position:absolute;bottom:0;font:500 13px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.scale-marks .cut{color:var(--ink);transform:translateX(-50%)}
+.scale-marks .end{transform:translateX(-100%)}
+.retake{list-style:none;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.retake li{margin:0}
+.retake .att{font-weight:600;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 12px;color:var(--ink)}
+.retake .wait{font:500 13px var(--f-mono);color:var(--muted)}
+.retake .wait::before{content:"→ "}
+.retake .wait::after{content:" →"}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:640px){.cols{grid-template-columns:1fr}}
+.copyline{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+code{font:500 14px var(--f-mono);background:var(--surface-2);padding:3px 8px;border-radius:6px;color:var(--ink);word-break:break-all}
+.copy{padding:6px 10px;font-size:13px}
+.states{display:grid;gap:10px}
+.states>div{display:grid;grid-template-columns:120px 1fr;gap:12px}
+.states b{color:var(--ink)}
+@media (max-width:480px){.states>div{grid-template-columns:1fr;gap:2px}}
+
+footer{border-top:1px solid var(--line);padding-block:24px 48px;color:var(--muted);font-size:14px}
+footer p+p{margin-top:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<header class="wrap hero">
+  <p class="eyebrow">Study companion · Exam guide v1.0 · Effective July 2026</p>
+  <h1>Claude Certified Architect – Professional</h1>
+  <p class="lead">This exam checks that you can design, build and deliver production-grade AI systems on Claude. You pick models and API patterns, engineer prompts and context, integrate Claude into enterprise systems, and design for evaluation, security and governance.</p>
+  <dl class="facts">
+    <div><dt>Exam code</dt><dd><b>CCAR-P</b><small>proctored by Pearson VUE</small></dd></div>
+    <div><dt>Items</dt><dd><b>63</b><small>multiple choice and multiple response</small></dd></div>
+    <div><dt>Time</dt><dd><b>120 min</b><small>≈ 1 min 54 s per item</small></dd></div>
+    <div><dt>To pass</dt><dd><b>720</b><small>scaled score, 100–1,000</small></dd></div>
+    <div><dt>Fee</dt><dd><b>$175</b><small>USD, charged per attempt</small></dd></div>
+    <div><dt>Valid for</dt><dd><b>12 mo</b><small>free on-time renewal</small></dd></div>
+  </dl>
+</header>
+
+<div class="tabbar">
+  <div class="wrap tabs" role="tablist" aria-label="Guide sections">
+    <button type="button" role="tab" id="tab-overview" data-tab="overview" aria-controls="overview">Overview</button>
+    <button type="button" role="tab" id="tab-blueprint" data-tab="blueprint" aria-controls="blueprint">Blueprint</button>
+    <button type="button" role="tab" id="tab-practice" data-tab="practice" aria-controls="practice">Practice</button>
+    <button type="button" role="tab" id="tab-policies" data-tab="policies" aria-controls="policies">Policies</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- OVERVIEW -->
+<section id="overview" class="panel" role="tabpanel" aria-labelledby="tab-overview">
+  <div class="panel-head"><h2>What the credential proves</h2><button type="button" class="ghost" data-expand>Expand all</button></div>
+  <p class="prose">The credential is an independent check that you can architect Claude-based solutions in production. It tells employers, clients and teams that you can own, or significantly contribute to, the full lifecycle of a Claude-powered system.</p>
+
+  <div class="split">
+    <div class="card who yes">
+      <h3>Built for</h3>
+      <p class="small muted">Mid- to senior-level people who work between business requirements and technical implementation.</p>
+      <ul>
+        <li>Solution architects</li>
+        <li>AI/ML engineers</li>
+        <li>Technical leads</li>
+        <li>Senior software engineers</li>
+      </ul>
+    </div>
+    <div class="card who no">
+      <h3>Not built for</h3>
+      <p class="small muted">Anyone without experience designing end-to-end AI systems.</p>
+      <ul>
+        <li>Entry-level developers</li>
+        <li>Casual users of Claude-based apps</li>
+        <li>Purely non-technical roles</li>
+        <li>Prompt writing with no system design responsibility</li>
+      </ul>
+    </div>
+  </div>
+  <ul class="chips" aria-label="Typical industries">
+    <li>Financial services</li><li>Healthcare</li><li>Retail</li><li>Technology</li><li>Education</li><li>Government</li>
+  </ul>
+
+  <div class="folds">
+    <details class="fold" id="can-do">
+      <summary><span class="ft">What a certified architect can do</span><span class="fs">Seven capabilities, from prototyping to explaining decisions to stakeholders</span></summary>
+      <div class="fb">
+        <ul>
+          <li>Design and prototype AI-driven solutions that address real business problems</li>
+          <li>Select appropriate models, architectures and API patterns for specific use cases</li>
+          <li>Implement prompt engineering and context strategies to guide model behavior</li>
+          <li>Integrate Claude into production systems using APIs, orchestration tools and data pipelines</li>
+          <li>Apply evaluation, monitoring and observability practices to ensure solution quality</li>
+          <li>Incorporate security, compliance and governance considerations into system design</li>
+          <li>Collaborate with cross-functional stakeholders and communicate architectural decisions effectively</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="fold" id="mqc">
+      <summary><span class="ft">The minimally qualified candidate (MQC)</span><span class="fs">The person the passing score is set for, and the experience the guide recommends</span></summary>
+      <div class="fb">
+        <p>The MQC designs, implements and governs Claude-powered solutions in production. They combine an engineering mindset with real deployment experience and turn business requirements into scalable, secure and reliable architectures.</p>
+        <p>They can design end-to-end systems that cover prompt and context engineering, retrieval-augmented generation (RAG), API integration, orchestration and evaluation. They understand the trade-offs between cost, latency, performance, safety and maintainability.</p>
+        <h4>Recommended experience <span class="muted" style="font-weight:400">· tick what you already have</span></h4>
+        <ul class="checks">
+          <li><label><input type="checkbox" id="exp-0" data-c="exp-0"><span>A foundation in software engineering practice: modular design, separation of concerns, scalability</span></label></li>
+          <li><label><input type="checkbox" id="exp-1" data-c="exp-1"><span>3+ years in systems architecture or platform engineering</span></label></li>
+          <li><label><input type="checkbox" id="exp-2" data-c="exp-2"><span>6+ months hands-on with Claude or comparable LLM systems in production</span></label></li>
+          <li><label><input type="checkbox" id="exp-3" data-c="exp-3"><span>Delivered end-to-end systems from discovery through deployment and operations</span></label></li>
+        </ul>
+        <p class="note">There are no prerequisites. The experience above is recommended, not required. The credential is awarded on exam performance alone.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="exam-details">
+      <summary><span class="ft">Exam details</span><span class="fs">Format, delivery, scoring, fee and validity in one table</span></summary>
+      <div class="fb">
+        <div class="table-scroll">
+          <table>
+            <tr><th>Credential</th><td>Claude Certified Architect – Professional</td></tr>
+            <tr><th>Exam code</th><td>CCAR-P</td></tr>
+            <tr><th>Number of items</th><td>63</td></tr>
+            <tr><th>Item format</th><td>Multiple choice and multiple response. Each item states how many responses to select.</td></tr>
+            <tr><th>Time limit</th><td>120 minutes</td></tr>
+            <tr><th>Delivery</th><td>Proctored, online and/or at a test center, per program policy</td></tr>
+            <tr><th>Passing score</th><td>Scaled score of 720 on a 100–1,000 scale</td></tr>
+            <tr><th>Exam fee</th><td>$175 USD</td></tr>
+            <tr><th>Validity</th><td>12 months from the date the credential is awarded</td></tr>
+            <tr><th>Results</th><td>Pass/fail with scaled score, plus percent correct by domain</td></tr>
+          </table>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- BLUEPRINT -->
+<section id="blueprint" class="panel" role="tabpanel" aria-labelledby="tab-blueprint" hidden>
+  <div class="panel-head"><h2>Exam blueprint</h2><button type="button" class="ghost" data-expand>Expand all</button></div>
+  <p class="prose">Seven domains. Each weight is the approximate share of scored items. Select a domain to see the objectives exam items are written against.</p>
+  <div class="wbar-wrap" id="wbar-wrap">
+    <div class="wbar" id="wbar" role="group" aria-label="Domain weights"></div>
+    <div class="tip" id="tip" role="status" hidden></div>
+  </div>
+  <p class="small muted">Integration (19%) and Solution Design (17%) make up over a third of the exam. Developer Productivity is the smallest domain at 7%, about 4 items.</p>
+
+  <div class="card ready">
+    <div class="ready-top">
+      <div>
+        <p class="eyebrow">Your readiness</p>
+        <p class="ready-num"><span id="ready-pct">0%</span><small>weighted by domain share</small></p>
+      </div>
+      <button type="button" class="ghost" id="reset-ratings">Reset ratings</button>
+    </div>
+    <span class="meter big"><i id="ready-bar"></i></span>
+    <p id="focus" class="small muted"></p>
+  </div>
+
+  <div id="domains" class="folds"></div>
+</section>
+
+<!-- PRACTICE -->
+<section id="practice" class="panel" role="tabpanel" aria-labelledby="tab-practice" hidden>
+  <div class="panel-head"><h2>How to prepare</h2></div>
+  <p class="prose">No course is required, and no single resource guarantees a pass. Combine hands-on work with these steps.</p>
+  <ul class="checks">
+    <li><label><input type="checkbox" id="prep-0" data-c="prep-0"><span>Study the blueprint and self-assess against each objective. The Blueprint tab lets you rate every one.</span></label></li>
+    <li><label><input type="checkbox" id="prep-1" data-c="prep-1"><span>Review the official Anthropic docs for the Claude API, models, prompt engineering, MCP and Skills</span></label></li>
+    <li><label><input type="checkbox" id="prep-2" data-c="prep-2"><span>Build and run at least one end-to-end Claude solution, including RAG, evaluation and observability</span></label></li>
+    <li><label><input type="checkbox" id="prep-3" data-c="prep-3"><span>Practice architectural decisions: model selection, integration protocols and security trade-offs</span></label></li>
+    <li><label><input type="checkbox" id="prep-4" data-c="prep-4"><span>Work through the sample questions below to learn the item style</span></label></li>
+  </ul>
+
+  <div class="panel-head"><h2 id="samples">Sample questions</h2><span id="score" class="small muted"></span></div>
+  <p class="small muted">These illustrative items show the style and level of the exam. They are not drawn from the live item bank. Pick an option to see the answer and rationale.</p>
+  <div id="qs"></div>
+  <button type="button" class="ghost" id="reset-quiz" style="justify-self:start">Reset questions</button>
+</section>
+
+<!-- POLICIES -->
+<section id="policies" class="panel" role="tabpanel" aria-labelledby="tab-policies" hidden>
+  <div class="panel-head"><h2>Scoring, booking and rules</h2><button type="button" class="ghost" data-expand>Expand all</button></div>
+  <div class="folds">
+    <details class="fold" id="scoring">
+      <summary><span class="ft">How scoring works</span><span class="fs">Scaled 100–1,000. You pass at 720, measured against a fixed standard.</span></summary>
+      <div class="fb">
+        <div class="scale" role="img" aria-label="Scaled score from 100 to 1,000. The passing score is 720.">
+          <div class="scale-bar"><span class="fail">Fail</span><span class="pass">Pass</span></div>
+          <div class="scale-marks" aria-hidden="true">
+            <span style="left:0">100</span><span class="cut" style="left:68.9%">720</span><span class="end" style="left:100%">1,000</span>
+          </div>
+        </div>
+        <p>The exam is criterion-referenced. Every candidate is measured against the same fixed standard, so other candidates' results never affect yours.</p>
+        <p>Trained subject matter experts set the 720 cut score in a formal standard-setting study, based on the performance expected of a minimally qualified candidate.</p>
+        <p>Your score report shows pass or fail, your scaled score, and your percent correct in each domain. The domain percentages are feedback only. Pass or fail depends on the total scaled score.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="register">
+      <summary><span class="ft">Registering and scheduling</span><span class="fs">Register on the Anthropic Partner Academy, test with Pearson VUE. Changes are free until 24 hours before.</span></summary>
+      <div class="fb">
+        <ol>
+          <li>Open your exam's certification page on the Anthropic Partner Academy and review the details.</li>
+          <li>Download the Exam Guide. Read the Certification Terms and Conditions and the Certification Exam Policy.</li>
+          <li>Register and check out. The checkout price includes any discount for your partner tier.</li>
+          <li>Follow the confirmation instructions to create a Pearson VUE account, then sign in to schedule.</li>
+          <li>Pick a date and choose online proctoring or a Pearson test center.</li>
+          <li>Cancel or reschedule up to 24 hours before your appointment.</li>
+        </ol>
+        <p class="note warn">Changes made within 24 hours of the appointment forfeit the exam fee.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="identification">
+      <summary><span class="ft">ID and accommodations</span><span class="fs">Bring a government photo ID that matches your registration exactly. Get accommodations approved before you book.</span></summary>
+      <div class="fb">
+        <p>On exam day, present a valid, unexpired, government-issued photo ID. The name on it must match your registration exactly. To correct the name on your registration, contact Anthropic before you schedule:</p>
+        <p class="copyline"><code>certifications-support@anthropic.com</code><button type="button" class="ghost copy" data-copy="certifications-support@anthropic.com">Copy</button></p>
+        <p>Accommodations are available for documented disabilities or needs. Pearson VUE must approve them before you schedule, so wait for approval before booking. Request them at <a href="https://pearsonvue.com/us/en/test-takers/accommodations" target="_blank" rel="noopener">pearsonvue.com/us/en/test-takers/accommodations</a>.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="retakes">
+      <summary><span class="ft">Retakes</span><span class="fs">Waits grow from 14 to 30 to 90 days. Up to 4 attempts in any rolling 12 months.</span></summary>
+      <div class="fb">
+        <ol class="retake" aria-label="Retake waiting periods">
+          <li class="att">Attempt 1</li><li class="wait">14 days</li>
+          <li class="att">Attempt 2</li><li class="wait">30 days</li>
+          <li class="att">Attempt 3</li><li class="wait">90 days</li>
+          <li class="att">Attempt 4</li>
+        </ol>
+        <p>The fastest path to a fourth attempt takes 134 days. Each attempt costs the full exam fee. Limits apply per exam, so failing one exam does not stop you from registering for a different one.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="no-show">
+      <summary><span class="ft">No-shows and late arrival</span><span class="fs">Miss the appointment or the late-arrival window and you lose the fee.</span></summary>
+      <div class="fb">
+        <p>If you fail to appear, or arrive after the permitted late-arrival window, you forfeit the exam fee and must register again.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="exam-day">
+      <summary><span class="ft">Exam-day rules</span><span class="fs">Stay on camera, keep the desk clear, talk to no one, copy nothing.</span></summary>
+      <div class="fb">
+        <div class="cols">
+          <div>
+            <h4>During the exam</h4>
+            <ul>
+              <li>Stay in view of the proctor and webcam for the whole session when testing online</li>
+              <li>Keep your workspace clear of notes, books, phones, second monitors and other materials</li>
+              <li>Do not communicate with anyone</li>
+              <li>Do not capture, copy, photograph or reproduce any exam content</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Prohibited items</h4>
+            <ul>
+              <li>Mobile phones</li>
+              <li>Smart watches</li>
+              <li>Headphones</li>
+              <li>Study materials</li>
+              <li>Any recording device</li>
+            </ul>
+            <p class="small muted" style="margin-top:8px">Pearson VUE sets any permitted items, such as scratch paper from the proctor.</p>
+          </div>
+        </div>
+        <p class="note bad">Cheating, trying to access prohibited resources or disclosing exam content can invalidate your result, revoke your credential and ban you from future exams.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="nda">
+      <summary><span class="ft">Confidentiality agreement</span><span class="fs">You accept an NDA before the exam starts. Declining ends the session with no refund.</span></summary>
+      <div class="fb">
+        <p>All exam content, including questions, answer options and scenarios, is the confidential property of Anthropic. By accepting the agreement you promise not to disclose, reproduce or distribute any part of it.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="renewal">
+      <summary><span class="ft">Keeping the credential</span><span class="fs">Valid for 12 months. Renewing on time is free and unproctored.</span></summary>
+      <div class="fb">
+        <p>The credential expires after 12 months because the technology changes quickly.</p>
+        <div class="states">
+          <div><b>Renew on time</b><span>Review what changed since you certified, then pass a free, non-proctored assessment on the Anthropic Partner Academy.</span></div>
+          <div><b>Let it lapse</b><span>Retake the full exam at the full fee.</span></div>
+          <div><b>Major changes</b><span>If exam content changes significantly, Anthropic may require the full exam instead of the renewal assessment.</span></div>
+        </div>
+        <p>Holders stay bound by the exam-day rules of conduct.</p>
+      </div>
+    </details>
+
+    <details class="fold" id="support">
+      <summary><span class="ft">Support, appeals and privacy</span><span class="fs">Name fixes go to Anthropic. Everything else, including appeals, goes to Pearson VUE within 14 days.</span></summary>
+      <div class="fb">
+        <h4>Name corrections</h4>
+        <p class="copyline"><code>certifications-support@anthropic.com</code><button type="button" class="ghost copy" data-copy="certifications-support@anthropic.com">Copy</button></p>
+        <h4>Registration, scheduling, accommodations and results</h4>
+        <p>Pearson VUE support at <a href="https://pearsonvue.com/us/en/anthropic.html" target="_blank" rel="noopener">pearsonvue.com/us/en/anthropic.html</a></p>
+        <h4>Appeals</h4>
+        <p>Appeal a decision within 14 days of being notified. For a concern about your exam result, appeal within 14 days of your exam date. Submit appeals to Pearson VUE support. The standard-setting outcome and the content of individual items cannot be appealed.</p>
+        <h4>Privacy</h4>
+        <p>Registration and testing data is handled under Anthropic's privacy policy, Pearson VUE's privacy policy and applicable data-protection law.</p>
+      </div>
+    </details>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <p>Unofficial study companion built from the Claude Certified Architect – Professional Exam Guide, version 1.0 (initial publication, July 2026). The guide is subject to change without notice.</p>
+  <p>Read the <a href="https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf" target="_blank" rel="noopener">official exam guide (PDF)</a> before you register. Your ratings and checkmarks stay in this browser.</p>
+</footer>
+
+<script>
+const LEVELS = ['New', 'Familiar', 'Confident'];
+const DOMAINS = [
+  {id:'d1', name:'Solution Design & Architecture', w:17, obj:[
+    'Translate business problems into Claude-based AI solutions',
+    'Design end-to-end architectures (input → processing → output → feedback loops)',
+    'Select appropriate architectural patterns (workflow, agentic, augmented LLM)',
+    'Design multi-agent systems and orchestration strategies',
+    'Apply decomposition techniques for complex problem solving',
+    'Align solutions to business value pillars (efficiency, transformation, productivity, cost, performance SLAs)']},
+  {id:'d2', name:'Claude Models, Prompting & Context Engineering', w:13, obj:[
+    'Select appropriate Claude models based on trade-offs',
+    'Design system prompts, templates and guardrails',
+    'Apply prompt engineering techniques (zero-shot, few-shot, chain-of-thought)',
+    'Optimize context windows and manage token usage',
+    'Implement prompt reuse strategies (caching, modular prompts, Skills)']},
+  {id:'d3', name:'Integration', w:19, obj:[
+    'Evaluate tool/agent configuration for capability bloat',
+    'Analyze authentication and authorization requirements to identify security gaps',
+    'Evaluate accuracy-latency trade-offs and justify configuration decisions',
+    'Analyze observability challenges and select monitoring strategies at scale',
+    'Design a RAG pipeline with appropriate chunking and indexing strategies',
+    'Apply retrieval strategies matched to data shape and query pattern',
+    'Evaluate connection protocols and select the integration mechanism (MCP, API/CLI, agent-to-agent)',
+    'Evaluate progressive discovery vs. monolithic context strategy']},
+  {id:'d4', name:'Evaluation, Testing & Optimization', w:16, obj:[
+    'Define evaluation metrics (accuracy, latency, cost, safety, security)',
+    'Design evaluation datasets and test frameworks using mixed methodologies',
+    'Conduct A/B testing and iterative improvements',
+    'Diagnose system issues (prompt failure, hallucinations, model mismatch)',
+    'Optimize token usage, latency and cost-performance trade-offs',
+    'Monitor system performance using logging and observability tools']},
+  {id:'d5', name:'Governance, Safety & Risk Management', w:14, obj:[
+    'Implement guardrails and safety controls',
+    'Identify risks, limitations and failure modes of LLM systems',
+    'Apply human-in-the-loop validation strategies',
+    'Ensure compliance with regulations (e.g., GDPR, HIPAA, FedRAMP)',
+    'Address ethical AI considerations (bias, fairness, transparency)']},
+  {id:'d6', name:'Stakeholder Communication & Lifecycle Management', w:14, obj:[
+    'Conduct structured discovery and requirement gathering',
+    'Communicate architectural decisions and trade-offs',
+    'Manage stakeholder feedback loops and expectation alignment (including SLAs)',
+    'Document architectures and provide implementation guidance',
+    'Support lifecycle phases (discovery, design, handoff, monitoring, iteration)']},
+  {id:'d7', name:'Developer Productivity & Operational Enablement', w:7, obj:[
+    'Configure Claude tools and environments for teams (e.g., Claude Code)',
+    'Improve developer workflows using AI-assisted tooling',
+    'Support debugging and operational issue resolution']},
+];
+const SAMPLES = [
+  {domain:'D3 · Integration', a:1,
+   q:'A team exposes a customer-support agent that can read tickets, draft replies, issue refunds, and delete user accounts. Support staff only ever need to read tickets and draft replies. Applying least-privilege principles, which change best reduces risk?',
+   opts:['Add logging to the refund and delete tools so misuse can be audited later.',
+         "Remove the refund and delete tools from the agent's configuration entirely.",
+         'Keep all tools but add a confirmation prompt before refunds and deletions.',
+         'Replace the agent with a larger model that follows instructions more reliably.'],
+   why:'Least privilege means removing capabilities the role does not require, eliminating the attack surface rather than monitoring or guarding it. Logging (A) and confirmations (C) are detective/compensating controls, not removal of unnecessary privilege; model size (D) is unrelated to authorization scope.'},
+  {domain:'D2 · Models, Prompting & Context', a:2,
+   q:'An application sends the same 8,000-token system prompt and policy document on every request, followed by a short, varying user message. Latency and cost are both concerns. Which optimization most directly addresses both?',
+   opts:['Truncate the policy document to the first 1,000 tokens.',
+         'Switch to the smallest available model regardless of task fit.',
+         'Place the static system prompt and policy before the dynamic content and enable prompt caching.',
+         'Move the policy document into a few-shot example block.'],
+   why:'Ordering stable content first and enabling prompt caching lets repeated prefixes be reused, reducing both time-to-first-token and per-request cost without discarding required context. Truncation (A) loses needed policy; downsizing blindly (B) risks quality; relocating to few-shot (D) does not create a cacheable, reusable prefix.'},
+  {domain:'D4 · Evaluation & Optimization', a:1,
+   q:'A RAG system suddenly returns confident but incorrect answers after a document refresh, while latency and model version are unchanged. What is the most likely first place to investigate?',
+   opts:['The model weights have silently changed.',
+         'The retrieval/indexing step is returning irrelevant or stale chunks.',
+         'The temperature setting is too low.',
+         'The context window has shrunk.'],
+   why:'Confident-but-wrong answers following a document refresh, with model and latency unchanged, point to retrieval feeding the model poor context, for example a broken re-index or mismatched embeddings. The other options would not be triggered specifically by a document refresh.'},
+];
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'ccarp-guide-v1';
+let store = {r:{}, c:{}, tab:'overview'};
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) store = {...store, ...s}; } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+const smooth = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
+/* ---------- blueprint ---------- */
+const bar = $('#wbar'), wrap = $('#wbar-wrap'), tip = $('#tip'), doms = $('#domains');
+DOMAINS.forEach((d, i) => {
+  d.n = Math.round(63 * d.w / 100);
+  d.label = 'D' + (i + 1);
+  bar.insertAdjacentHTML('beforeend',
+    `<button type="button" class="seg" data-d="${d.id}" style="flex:${d.w} 1 0" aria-label="${d.label} ${d.name}: ${d.w}% of the exam, about ${d.n} items"><b>${d.label}</b><span>${d.w}%</span></button>`);
+  doms.insertAdjacentHTML('beforeend', `<details class="fold dom" id="${d.id}">
+    <summary>
+      <span class="dnum">${d.label}</span>
+      <span class="dt"><span class="ft">${d.name}</span><span class="fs">${d.w}% of the exam · ≈ ${d.n} items · ${d.obj.length} objectives</span></span>
+      <span class="dready" title="Your readiness for this domain"><span class="meter"><i></i></span><span class="pct">0%</span></span>
+    </summary>
+    <ul class="objs">${d.obj.map((o, j) => {
+      const k = `${d.id}-${j}`;
+      return `<li class="obj"><span>${o}</span><fieldset class="rate"><legend class="sr">How confident are you?</legend>${
+        LEVELS.map((l, v) => `<input type="radio" name="${k}" id="${k}-${v}" value="${v}"${store.r[k] === v ? ' checked' : ''}><label for="${k}-${v}">${l}</label>`).join('')
+      }</fieldset></li>`;
+    }).join('')}</ul>
+  </details>`);
+});
+const TOTAL_OBJ = DOMAINS.reduce((a, d) => a + d.obj.length, 0);
+
+function updateReadiness() {
+  let total = 0, rated = 0;
+  DOMAINS.forEach(d => {
+    let s = 0;
+    d.obj.forEach((_, j) => { const v = store.r[`${d.id}-${j}`]; if (v !== undefined) { rated++; s += v / 2; } });
+    d.r = s / d.obj.length;
+    total += d.w * d.r;
+    const el = document.getElementById(d.id);
+    el.querySelector('.meter i').style.width = d.r * 100 + '%';
+    el.querySelector('.pct').textContent = Math.round(d.r * 100) + '%';
+  });
+  $('#ready-pct').textContent = Math.round(total) + '%';
+  $('#ready-bar').style.width = total + '%';
+  const focus = $('#focus');
+  if (!rated) { focus.textContent = 'Open a domain and rate each objective as New, Familiar or Confident. The meter weights your ratings by each domain\'s share of the exam.'; return; }
+  const gap = DOMAINS.reduce((a, d) => d.w * (1 - d.r) > a.w * (1 - a.r) ? d : a);
+  focus.innerHTML = gap.r === 1
+    ? `${rated} of ${TOTAL_OBJ} objectives rated. Every objective is Confident.`
+    : `${rated} of ${TOTAL_OBJ} objectives rated. Biggest weighted gap: <a href="#${gap.id}">${gap.label} ${gap.name}</a> (${gap.w}% of the exam, ${Math.round(gap.r * 100)}% ready).`;
+}
+doms.addEventListener('change', e => { store.r[e.target.name] = +e.target.value; save(); updateReadiness(); });
+
+bar.addEventListener('click', e => {
+  const b = e.target.closest('.seg'); if (!b) return;
+  const d = document.getElementById(b.dataset.d);
+  d.open = true;
+  d.scrollIntoView({block:'start', behavior:smooth()});
+});
+function showTip(b) {
+  if (!b) return;
+  const d = DOMAINS.find(x => x.id === b.dataset.d);
+  tip.textContent = `${d.label} · ${d.name} · ${d.w}% · ≈ ${d.n} items`;
+  tip.hidden = false;
+  const c = b.offsetLeft + b.offsetWidth / 2, w = tip.offsetWidth;
+  tip.style.left = Math.min(Math.max(c - w / 2, 0), wrap.offsetWidth - w) + 'px';
+}
+bar.addEventListener('pointerover', e => showTip(e.target.closest('.seg')));
+bar.addEventListener('pointerleave', () => tip.hidden = true);
+bar.addEventListener('focusin', e => showTip(e.target.closest('.seg')));
+bar.addEventListener('focusout', () => tip.hidden = true);
+
+const rr = $('#reset-ratings'); let armed = null;
+rr.addEventListener('click', () => {
+  if (!armed) { rr.textContent = 'Click again to reset'; armed = setTimeout(() => { armed = null; rr.textContent = 'Reset ratings'; }, 3000); return; }
+  clearTimeout(armed); armed = null; rr.textContent = 'Reset ratings';
+  store.r = {}; save();
+  $$('#domains input:checked').forEach(i => i.checked = false);
+  updateReadiness();
+});
+updateReadiness();
+
+/* ---------- expand / collapse ---------- */
+function syncExpand(panel) {
+  const b = panel && panel.querySelector('[data-expand]'); if (!b) return;
+  b.textContent = [...panel.querySelectorAll('details')].every(d => d.open) ? 'Collapse all' : 'Expand all';
+}
+document.addEventListener('toggle', e => {
+  const d = e.target;
+  if (d.classList && d.classList.contains('dom')) bar.querySelector(`[data-d="${d.id}"]`).classList.toggle('on', d.open);
+  if (d.closest) syncExpand(d.closest('[role=tabpanel]'));
+}, true);
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-expand]'); if (!b) return;
+  const ds = [...b.closest('[role=tabpanel]').querySelectorAll('details')];
+  const open = !ds.every(d => d.open);
+  ds.forEach(d => d.open = open);
+});
+
+/* ---------- checklists ---------- */
+$$('input[data-c]').forEach(c => {
+  c.checked = !!store.c[c.dataset.c];
+  c.addEventListener('change', () => { store.c[c.dataset.c] = c.checked; save(); });
+});
+
+/* ---------- sample questions ---------- */
+const qs = $('#qs'); let answered = 0, correct = 0;
+const updScore = () => $('#score').textContent = `${answered} of ${SAMPLES.length} answered · ${correct} correct`;
+function renderQs() {
+  answered = correct = 0; updScore();
+  qs.innerHTML = SAMPLES.map((s, q) => `<article class="q" id="sample-${q + 1}">
+    <p class="eyebrow">Sample ${q + 1} · ${s.domain}</p>
+    <p class="stem">${s.q}</p>
+    <div class="opts">${s.opts.map((o, i) => `<button type="button" class="opt" data-q="${q}" data-i="${i}"><span class="key">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}</div>
+    <div class="fb-q" hidden><p class="verdict"></p><p><strong>Rationale.</strong> ${s.why}</p></div>
+    <button type="button" class="link" data-reveal="${q}">Show answer without guessing</button>
+  </article>`).join('');
+}
+function answer(q, i) {
+  const card = document.getElementById(`sample-${q + 1}`), s = SAMPLES[q];
+  if (card.dataset.done) return;
+  card.dataset.done = '1';
+  card.querySelectorAll('.opt').forEach((b, j) => {
+    b.disabled = true;
+    if (j === s.a) { b.classList.add('right'); b.insertAdjacentHTML('beforeend', '<span class="tag">✓ Correct answer</span>'); }
+    else if (j === i) { b.classList.add('wrong'); b.insertAdjacentHTML('beforeend', '<span class="tag">✕ Your pick</span>'); }
+  });
+  const v = card.querySelector('.verdict'), L = 'ABCD'[s.a];
+  if (i === null) v.textContent = `Answer: ${L}`;
+  else {
+    answered++; if (i === s.a) correct++;
+    v.textContent = i === s.a ? '✓ Correct.' : `✕ Not quite. The answer is ${L}.`;
+    v.classList.add(i === s.a ? 'good' : 'bad');
+  }
+  card.querySelector('.fb-q').hidden = false;
+  card.querySelector('[data-reveal]').hidden = true;
+  updScore();
+}
+qs.addEventListener('click', e => {
+  const o = e.target.closest('.opt'); if (o) return answer(+o.dataset.q, +o.dataset.i);
+  const r = e.target.closest('[data-reveal]'); if (r) answer(+r.dataset.reveal, null);
+});
+$('#reset-quiz').addEventListener('click', renderQs);
+renderQs();
+
+/* ---------- copy ---------- */
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-copy]'); if (!b) return;
+  const fallback = () => getSelection().selectAllChildren(b.previousElementSibling);
+  try {
+    navigator.clipboard.writeText(b.dataset.copy)
+      .then(() => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1500); })
+      .catch(fallback);
+  } catch (err) { fallback(); }
+});
+
+/* ---------- tabs + deep links (#blueprint, #d3, #retakes …) ---------- */
+const tabs = $$('[role=tab]'), hero = $('.hero');
+function show(name) {
+  tabs.forEach(t => {
+    const on = t.dataset.tab === name;
+    t.setAttribute('aria-selected', on);
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.dataset.tab).hidden = !on;
+  });
+  store.tab = name; save();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => {
+    show(t.dataset.tab);
+    try { history.replaceState(null, '', '#' + t.dataset.tab); } catch (e) {}
+    const top = hero.offsetTop + hero.offsetHeight;
+    if (scrollY > top) scrollTo(0, top);
+  });
+  t.addEventListener('keydown', e => {
+    const k = {ArrowRight:1, ArrowLeft:-1}[e.key]; if (!k) return;
+    const n = tabs[(i + k + tabs.length) % tabs.length]; n.focus(); n.click();
+  });
+});
+function route() {
+  const id = location.hash.slice(1), el = id && document.getElementById(id);
+  const panel = el && el.closest('[role=tabpanel]');
+  if (!panel) {
+    const t = document.getElementById(store.tab);
+    return show(t && t.getAttribute('role') === 'tabpanel' ? store.tab : 'overview');
+  }
+  show(panel.id);
+  if (el.tagName === 'DETAILS') el.open = true;
+  if (el !== panel) requestAnimationFrame(() => el.scrollIntoView({block:'start'}));
+}
+addEventListener('hashchange', route);
+route();
+</script>

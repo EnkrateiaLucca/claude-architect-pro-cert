@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CCAR-P Cheatsheet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e6;
+    --cream-2: #ebe4d4;
+    --paper: #fbf8f1;
+    --line: #ddd5c0;
+    --ink: #1a1a1a;
+    --ink-2: #444;
+    --muted: #6b6559;
+    --accent: #b85c1f;
+    --gold: #d9a441;
+    --trap-bg: #fbefe4;
+  }
+  @page {
+    size: Letter;
+    margin: 0.34in 0.34in 0.4in;
+    @bottom-left { content: "CCAR-P Exam Cheatsheet · Claude Certified Architect – Professional"; font: 600 6.5pt Inter, sans-serif; color: #8a8478; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 600 6.5pt Inter, sans-serif; color: #8a8478; }
+  }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9pt; line-height: 1.23; color: var(--ink); background: #fff;
+  }
+  @media screen { body { max-width: 8.5in; margin: 20px auto; padding: 0 16px; } }
+  .page { break-before: page; }
+  h1, h2, h3, h4, p, ul, ol { margin: 0; }
+  ul, ol { padding-left: 1.15em; }
+  li { margin: 0.5px 0; }
+  b, strong { font-weight: 700; }
+  a { color: var(--accent); text-decoration: none; }
+  .muted { color: var(--muted); }
+  .small { font-size: 7.8pt; line-height: 1.2; }
+  .acc { color: var(--accent); font-weight: 700; }
+
+  /* header */
+  .masthead {
+    background: var(--ink); color: var(--cream); padding: 8px 12px 7px; border-radius: 4px;
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 10px;
+    border-top: 4px solid var(--gold);
+  }
+  .masthead .kicker { color: var(--gold); font-size: 7pt; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  .masthead h1 { font-size: 15.5pt; font-weight: 800; line-height: 1.1; margin-top: 2px; }
+  .masthead .sub { font-size: 7.6pt; color: #c9c4b5; text-align: right; max-width: 2.6in; }
+
+  /* section headers */
+  .sec-h {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    border-bottom: 2px solid var(--ink); padding-bottom: 1px; margin: 6px 0 4px;
+  }
+  .sec-h h2 { font-size: 12.5pt; font-weight: 800; }
+  .sec-h .code { background: var(--accent); color: #fff; font-weight: 800; font-size: 9pt; padding: 1px 6px; border-radius: 3px; }
+  .sec-h .meta { margin-left: auto; font-size: 7.6pt; color: var(--muted); font-weight: 600; }
+  .sec-h .meta b { color: var(--accent); }
+  .sec-h .fourd { background: var(--gold); color: var(--ink); font-size: 7pt; font-weight: 700; padding: 1px 5px; border-radius: 3px; letter-spacing: 0.04em; }
+
+  .objectives {
+    background: var(--cream); border-left: 3px solid var(--gold); padding: 3px 8px 3px 6px;
+    font-size: 7.3pt; line-height: 1.18; color: var(--ink-2); margin-bottom: 4px; break-inside: avoid;
+  }
+  .objectives .lbl { font-weight: 700; color: var(--ink); letter-spacing: 0.04em; text-transform: uppercase; font-size: 6.8pt; margin-right: 3px; }
+  .objectives ol { columns: 2; column-gap: 14px; padding-left: 1.6em; margin-top: 1px; }
+  .objectives ol li { break-inside: avoid; }
+
+
+  .head { break-inside: avoid; }
+  .sec-h, .objectives, .card h4 { break-after: avoid; }
+  /* cards & layout */
+  .cols { column-count: 2; column-gap: 9px; }
+  .cols-3 { column-count: 3; column-gap: 8px; }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 3px;
+    padding: 3px 6px 3px; margin: 0 0 4.5px; break-inside: avoid; display: block;
+  }
+  .card h4, .tile h4 {
+    font-size: 7.2pt; font-weight: 800; color: var(--accent); text-transform: uppercase;
+    letter-spacing: 0.07em; margin-bottom: 2px;
+  }
+  .card p + p, .card p + ul, .card ul + p, .card table + p, .card p + table { margin-top: 2px; }
+  .card.plain { background: #fff; }
+  .card.flow { break-inside: auto; }
+  tr { break-inside: avoid; }
+  .uc { columns: 2; column-gap: 14px; font-size: 8pt; line-height: 1.2; padding-left: 0; list-style: none; }
+  .uc li { break-inside: avoid; margin: 0 0 1.5px; padding-left: 8px; text-indent: -8px; }
+  .uc li b { color: var(--accent); }
+  .fn { font-size: 7pt; color: var(--muted); font-weight: 400; margin-top: 1px; word-break: break-word; }
+  .card.trap { background: var(--trap-bg); border-color: #e6c9b0; border-left: 3px solid var(--accent); }
+  .card.key { background: #fff; border: 1.5px solid var(--ink); }
+  .row { display: grid; gap: 8px; margin-bottom: 6px; }
+  .row > .card { margin: 0; }
+  .r2 { grid-template-columns: 1fr 1fr; }
+  .r3 { grid-template-columns: 1fr 1fr 1fr; }
+  .r-60 { grid-template-columns: 1.35fr 1fr; }
+  .r-40 { grid-template-columns: 1fr 1.35fr; }
+
+  /* tables */
+  table { width: 100%; border-collapse: collapse; font-size: 7.8pt; line-height: 1.18; }
+  th { background: var(--ink); color: var(--cream); font-weight: 700; text-align: left; padding: 1.5px 3.5px; font-size: 7.4pt; }
+  td { padding: 1px 3.5px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:nth-child(even) td { background: rgba(235,228,212,0.45); }
+  td:first-child { font-weight: 700; }
+  td.c, th.c { text-align: center; }
+  .t-acc td:first-child { color: var(--accent); }
+  table.notbold td:first-child { font-weight: 400; }
+  .pat { font-style: italic; color: var(--accent); white-space: nowrap; }
+
+  /* page 1 */
+  .glance { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin: 6px 0; }
+  .tile { background: var(--cream); border-radius: 3px; padding: 4px 6px; border: 1px solid var(--line); }
+  .tile .big { font-size: 13pt; font-weight: 800; color: var(--ink); line-height: 1.05; }
+  .tile .big small { font-size: 8pt; font-weight: 700; color: var(--accent); }
+  .tile .cap { font-size: 7.3pt; color: var(--ink-2); line-height: 1.22; margin-top: 1px; }
+  .elig { font-size: 7.8pt; background: #fff; border: 1.5px solid var(--ink); border-radius: 3px; padding: 3px 7px; margin-bottom: 6px; }
+  .bar { display: inline-block; height: 7px; background: var(--accent); border-radius: 2px; vertical-align: middle; }
+  .bar.gold { background: var(--gold); }
+  .rules { counter-reset: r; list-style: none; padding: 0; }
+  .rules li { counter-increment: r; position: relative; padding-left: 17px; margin: 2px 0; }
+  .rules li::before {
+    content: counter(r); position: absolute; left: 0; top: 0.5px; width: 12.5px; height: 12.5px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-size: 7pt; font-weight: 800; text-align: center; line-height: 12.5px;
+  }
+  .answer-move { background: var(--ink); color: var(--cream); border-radius: 3px; padding: 5px 9px; font-size: 8.8pt; margin-bottom: 6px; }
+  .answer-move b { color: var(--gold); }
+
+  .links { columns: 3; column-gap: 12px; font-size: 7.6pt; line-height: 1.2; list-style: none; padding: 0; }
+  .links li { break-inside: avoid; margin-bottom: 2px; }
+  .links li span { color: var(--muted); font-size: 7.2pt; word-break: break-all; }
+  .foot-note { font-size: 7.2pt; color: var(--muted); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ============================ PAGE 1 ============================ -->
+<header class="masthead">
+  <div>
+    <div class="kicker">Exam summary · Exam code CCAR-P</div>
+    <h1>Claude Certified Architect – Professional: Exam Cheatsheet</h1>
+  </div>
+  <div class="sub">Companion to the O'Reilly exam-prep course. Exam facts follow the official Exam Guide v1.0 (July 2026). Platform facts checked against Anthropic docs, October 2026.</div>
+</header>
+
+<div class="glance">
+  <div class="tile"><div class="big">63 <small>items</small></div><div class="cap">Multiple-choice and multiple-response. Each item states how many to pick.</div></div>
+  <div class="tile"><div class="big">120 <small>min</small></div><div class="cap">About 1 min 54 s per item.</div></div>
+  <div class="tile"><div class="big">720 <small>/ 1,000</small></div><div class="cap">Scaled cut score on 100–1,000. Not 72% raw.</div></div>
+  <div class="tile"><div class="big">$175 <small>USD</small></div><div class="cap">Per attempt. Partner-tier discounts may apply.</div></div>
+  <div class="tile"><div class="big">12 <small>months</small></div><div class="cap">Valid 12 months. On-time renewal is free and non-proctored.</div></div>
+  <div class="tile"><h4>Prerequisites</h4><div class="cap">None. Architect – Foundations is not required.</div></div>
+  <div class="tile"><h4>Recommended</h4><div class="cap">3+ yrs architecture; 6+ months Claude or LLMs in production.</div></div>
+  <div class="tile"><h4>Delivery</h4><div class="cap">Pearson VUE, online proctored or test center. Closed book, NDA.</div></div>
+  <div class="tile"><h4>Retakes</h4><div class="cap">Wait 14 / 30 / 90 days. Max 4 attempts per rolling 12 months.</div></div>
+  <div class="tile"><h4>Reschedule</h4><div class="cap">Use ≥ <b>48 h</b>. The guide says 24 h; FAQ and policies say 48 h.</div></div>
+</div>
+<div class="elig"><b class="acc">MQC lens.</b> An experienced practitioner who designs, implements, and governs Claude systems in production and weighs every choice on <b>cost, latency, performance, safety, and maintainability</b>. Registration requires a Claude Partner Network company email.</div>
+
+<div class="row r-60">
+  <div class="card plain">
+    <h4>Blueprint: 7 domains, 38 objectives</h4>
+    <table>
+      <thead><tr><th>#</th><th>Domain</th><th class="c">Weight</th><th class="c">~Items</th><th class="c">Lesson</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>Solution Design &amp; Architecture</td><td class="c">17%</td><td class="c">11</td><td class="c">01</td></tr>
+        <tr><td>D2</td><td>Claude Models, Prompting &amp; Context Engineering</td><td class="c">13%</td><td class="c">8</td><td class="c">02</td></tr>
+        <tr><td>D3</td><td><b>Integration</b></td><td class="c"><b>19%</b></td><td class="c">12</td><td class="c">03</td></tr>
+        <tr><td>D4</td><td>Evaluation, Testing &amp; Optimization</td><td class="c">16%</td><td class="c">10</td><td class="c">04</td></tr>
+        <tr><td>D5</td><td>Governance, Safety &amp; Risk Management</td><td class="c">14%</td><td class="c">9</td><td class="c">05</td></tr>
+        <tr><td>D6</td><td>Stakeholder Communication &amp; Lifecycle</td><td class="c">14%</td><td class="c">9</td><td class="c">06</td></tr>
+        <tr><td>D7</td><td>Developer Productivity &amp; Operational Enablement</td><td class="c">7%</td><td class="c">4</td><td class="c">07</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin-top:3px">Counts are weight × 63, rounded. <b class="acc">D1 + D3 + D4 = 52%.</b> D5–D7 (35%) have no Architect – Foundations counterpart. Objectives name no API parameters: the exam tests decisions.</p>
+  </div>
+  <div class="card key">
+    <h4>Core exam logic</h4>
+    <ol class="rules">
+      <li><b>Simplest pattern that works.</b> Workflow → agent → multi-agent, only on evidence.</li>
+      <li><b>Remove capability before you guard it.</b> Least privilege beats logging.</li>
+      <li><b>Enforce in code, not the prompt.</b> Permissions, hooks, schemas, validators.</li>
+      <li><b>Static first, then cache.</b> Batch what can wait.</li>
+      <li><b>Diagnose from what changed.</b> Match the trigger to the layer.</li>
+      <li><b>Evals gate every change.</b> Measured criteria, cost per task.</li>
+      <li><b>Design for the handoff.</b> Cost, risk, reversal; runbooks, owners.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="answer-move"><b>How items are written:</b> a production scenario → a <b>trigger</b> in the stem ("only ever need", "after a document refresh", "same prompt every request") → "best reduces risk" / "most directly addresses" / "first place to investigate" → four options. <b>Pick the structural fix that matches the trigger and keeps the needed capability.</b></div>
+
+<div class="card plain" style="margin-bottom:6px">
+  <h4>The six distractor patterns: name the pattern, cross it out</h4>
+  <table class="t-acc">
+    <thead><tr><th>Pattern</th><th>Sounds like</th><th>Why it loses</th></tr></thead>
+    <tbody>
+      <tr><td>Bigger model</td><td>"Switch to a larger model that follows instructions better."</td><td>Capability isn't the problem: authz, retrieval, or context is</td></tr>
+      <tr><td>Watch, don't remove</td><td>"Add logging." "Add a confirmation step."</td><td>Detective/compensating control where a preventive one exists</td></tr>
+      <tr><td>Prompt as policy</td><td>"Add to the system prompt that it must never…"</td><td>Instructions are best effort; rules that must hold live in code</td></tr>
+      <tr><td>Lossy shortcut</td><td>"Truncate to 1,000 tokens." "Smallest model regardless of fit."</td><td>Saves cost by discarding what the task needs</td></tr>
+      <tr><td>Wrong trigger</td><td>"Weights changed." "Temperature too low." "Window shrank."</td><td>The event in the stem wouldn't cause it</td></tr>
+      <tr><td>Over-engineering</td><td>"Split into five specialized agents." "Fine-tune."</td><td>Complexity without evidence; ~15× tokens for multi-agent</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card plain">
+  <h4>Official samples (exam guide, Section 8)</h4>
+  <table class="notbold">
+    <thead><tr><th>Sample</th><th>Trigger</th><th>Answer</th><th>Wrong options</th></tr></thead>
+    <tbody>
+      <tr><td><b>1 · D3</b> Support agent can refund and delete</td><td>"Staff only ever need to read and draft"</td><td><b>Remove the tools</b></td><td>Logging, confirmation (watch, don't remove); bigger model</td></tr>
+      <tr><td><b>2 · D2</b> 8,000-token prompt on every request</td><td>"Latency and cost are both concerns"</td><td><b>Static first + prompt caching</b></td><td>Truncate, smallest model (lossy); few-shot block (no cache)</td></tr>
+      <tr><td><b>3 · D4</b> RAG wrong after document refresh</td><td>"Model version unchanged"</td><td><b>Investigate retrieval/indexing</b></td><td>Weights, temperature, window (wrong trigger)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================ PAGE 2: D1 + D2 ============================ -->
+<section class="page" style="font-size:8.6pt">
+<div class="head"><div class="sec-h"><span class="code">D1</span><h2>Solution Design &amp; Architecture</h2><span class="meta"><b>17%</b> · ~11 items · Lesson 01</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Translate business problems into Claude-based AI solutions</li><li>Design end-to-end architectures (input → processing → output → feedback loops)</li><li>Select patterns (workflow, agentic, augmented LLM)</li><li>Design multi-agent systems and orchestration</li><li>Apply decomposition techniques</li><li>Align to value pillars (efficiency, transformation, productivity, cost, performance SLAs)</li></ol></div></div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Four decisions before code, in order</h4>
+    <ol class="rules"><li><b>Ownership:</b> Claude vs. existing systems vs. humans</li><li><b>Shape:</b> augment (live, seconds) · automate (pipeline) · agent (open-ended)</li><li><b>Reference architecture:</b> name the pattern</li><li><b>Entry point:</b> model, context strategy, surface, route</li></ol>
+    <p class="small" style="margin-top:2px"><b>Lens:</b> systems own exact figures, live facts, and state · code owns control flow · humans own consequential decisions.</p>
+  </div>
+  <div class="card">
+    <h4>The ladder: climb only on evidence</h4>
+    <table><thead><tr><th>Rung</th><th>Definition</th><th>Cost</th></tr></thead><tbody>
+      <tr><td>Augmented LLM</td><td>One call + retrieval, tools, memory</td><td>Least flexible</td></tr>
+      <tr><td>Workflow</td><td>Predefined code paths</td><td>No adaptation</td></tr>
+      <tr><td>Agent</td><td>LLM directs its own steps in a loop</td><td>Latency, tokens, compounding errors</td></tr>
+      <tr><td>Multi-agent</td><td>Orchestrator + subagents</td><td>~15× chat tokens (agents ~4×)</td></tr>
+    </tbody></table>
+    <p class="small" style="margin-top:2px">Flowchart drawable in advance → workflow. Agents need ground truth per step, stop conditions, sandbox.</p>
+  </div>
+</div>
+
+<div class="row r-60">
+  <div class="card">
+    <h4>Five workflows</h4>
+    <table><thead><tr><th>Pattern</th><th>Use when</th></tr></thead><tbody>
+      <tr><td>Prompt chaining</td><td>Fixed sequential steps; gates between</td></tr>
+      <tr><td>Routing</td><td>Distinct input categories (easy → small model)</td></tr>
+      <tr><td>Parallelization</td><td>Sectioning (independent parts) or voting</td></tr>
+      <tr><td>Orchestrator-workers</td><td>Subtasks unknown until input seen</td></tr>
+      <tr><td>Evaluator-optimizer</td><td>Clear rubric; iteration helps</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h4>Multi-agent rules</h4>
+    <ul><li>Beat single agent by <b>90.2%</b> on Anthropic's research eval</li><li><b>Fits:</b> breadth-first, parallel, info exceeds one context</li><li><b>Fails:</b> tightly coupled work (most coding), shared context, real-time coordination</li><li><b>Subagents don't inherit context.</b> Pass task, constraints, format</li><li>Scope tools per subagent; clear boundaries; orchestrator synthesizes</li></ul>
+  </div>
+</div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Decomposition and reference architectures</h4>
+    <ul><li><b>Pipeline</b> (stages) · <b>map-reduce</b> (partitions) · <b>local + integration pass</b> (big reviews) · <b>specialist</b> · <b>plan-then-execute</b></li><li>Docs Q&amp;A → <b>RAG</b> · live state → <b>tool call to system of record</b> · bulk extraction → <b>batch pipeline + structured outputs</b> · support with actions → <b>least-privilege agent + approvals</b> · broad research → <b>orchestrator-workers</b></li></ul>
+  </div>
+  <div class="card">
+    <h4>End-to-end and value</h4>
+    <ul><li>Input (screening) → processing (pattern, model, context) → output (validation) → <b>feedback loop</b> (corrections → eval set → next version)</li><li>No feedback loop = can't improve or detect drift</li><li>Pillars: efficiency · transformation · productivity · cost · performance SLAs. Name the pillar <b>and its metric</b> first</li><li class="acc">Traps: agent for known steps · multi-agent for coupled work · RAG for live data</li></ul>
+  </div>
+</div>
+
+<div class="head" style="margin-top:6px"><div class="sec-h"><span class="code">D2</span><h2>Models, Prompting &amp; Context Engineering</h2><span class="meta"><b>13%</b> · ~8 items · Lesson 02</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Select Claude models based on trade-offs</li><li>Design system prompts, templates, guardrails</li><li>Apply zero-shot, few-shot, chain-of-thought</li><li>Optimize context windows and token usage</li><li>Prompt reuse: caching, modular prompts, Skills</li></ol></div></div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Model choice (lineup as of Oct 2026)</h4>
+    <table><thead><tr><th>Model</th><th>Fit</th><th>$/MTok in · out</th></tr></thead><tbody>
+      <tr><td>Fable 5.1</td><td>Hardest reasoning, long-horizon agents</td><td>10 · 50</td></tr>
+      <tr><td>Opus 5.5</td><td>Agentic coding, knowledge work; "start here"</td><td>4 · 20</td></tr>
+      <tr><td>Sonnet 5.5</td><td>Speed + intelligence</td><td>2 · 10</td></tr>
+      <tr><td>Haiku 5.5</td><td>Classify, extract, route at volume</td><td>0.10 · 0.50</td></tr>
+    </tbody></table>
+    <p class="small" style="margin-top:2px">Decide on <b>your eval set</b>. <b>Tune effort before switching models.</b> Route by difficulty. Compare <b>cost per completed task</b>.</p>
+  </div>
+  <div class="card">
+    <h4>Prompt caching</h4>
+    <ul><li>Order <b>tools → system → messages</b>, static → dynamic. Exact-prefix match</li><li>Up to <b>4 breakpoints</b>; min <b>512 tokens</b> on current models</li><li>TTL 5 min (write <b>1.25×</b>) or 1 h (write <b>2×</b>); reads a fraction of base input</li><li>Cache reads don't count toward ITPM on most models</li><li>Killers: timestamp/user ID at the top, changed tools, changing effort</li></ul>
+  </div>
+</div>
+<div class="row r2">
+  <div class="card">
+    <h4>Techniques and guardrails</h4>
+    <ul><li><b>Few-shot:</b> 3–5 diverse examples in tags for exact format/mapping</li><li><b>CoT:</b> higher effort or reasoning before the answer; arithmetic to a tool</li><li><b>Shape guarantee:</b> structured outputs / strict tool use. Prefill and forced <code>tool_choice</code> error on new models</li><li>System prompt = role, scope, tone, "say I don't know." Not: hard limits, authz, secrets</li></ul>
+  </div>
+  <div class="card">
+    <h4>Context engineering</h4>
+    <ul><li>Smallest set of high-signal tokens; 1M window ≠ use it all</li><li>Long doc: document first, question last, quotes before answer</li><li>Long sessions: context editing, compaction, memory tool, facts block</li><li>KB &lt; ~200k tokens: all in context + cache</li><li><b>Skills:</b> ~100 tokens metadata each; body and files load on demand</li></ul>
+  </div>
+</div>
+</section>
+
+<!-- ============================ PAGE 3: D3 ============================ -->
+<section class="page">
+<div class="head"><div class="sec-h"><span class="code">D3</span><h2>Integration</h2><span class="meta"><b>19%, the largest domain</b> · ~12 items · Lesson 03</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Evaluate tool/agent config for capability bloat</li><li>Analyze authn/authz to find security gaps</li><li>Evaluate accuracy-latency trade-offs</li><li>Observability and monitoring at scale</li><li>Design RAG chunking and indexing</li><li>Match retrieval to data shape and query</li><li>Choose MCP vs. API/CLI vs. agent-to-agent</li><li>Progressive discovery vs. monolithic context</li></ol></div></div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Capability bloat and identity gaps</h4>
+    <table><thead><tr><th>Finding</th><th>Fix</th></tr></thead><tbody>
+      <tr><td>50+ tools, wrong picks</td><td>Scoped sub-agents · consolidate · tool search (<code>defer_loading</code>)</td></tr>
+      <tr><td>Tools the role never uses</td><td><b>Remove them</b></td></tr>
+      <tr><td>Shared admin service account</td><td>Per-user delegated OAuth tokens</td></tr>
+      <tr><td>Identity from model text</td><td>Identity from SSO; authorize server-side</td></tr>
+      <tr><td>MCP token passthrough</td><td>Validate tokens issued for the server</td></tr>
+      <tr><td>Over-privileged creds</td><td>Scope to exposed operations</td></tr>
+      <tr><td>Key in browser/prompt</td><td>Backend proxy</td></tr>
+      <tr><td>User-supplied <code>file_id</code></td><td>Never accept; workspace per tenant</td></tr>
+      <tr><td>JIT provisioning only</td><td>SCIM (deprovisions on IdP removal)</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h4>RAG pipeline</h4>
+    <table><thead><tr><th>Stage</th><th>Decision</th></tr></thead><tbody>
+      <tr><td>Before RAG</td><td>&lt; ~200k tokens (~500 pages): long context + caching</td></tr>
+      <tr><td>Chunk</td><td>Structure-aware; tables and procedures whole</td></tr>
+      <tr><td>Contextualize</td><td>50–100 tokens of context per chunk: failures −35% / −49% (+BM25) / −67% (+rerank)</td></tr>
+      <tr><td>Index</td><td>Hybrid embeddings + BM25 + metadata</td></tr>
+      <tr><td>Retrieve</td><td>Wide (top-20), rerank</td></tr>
+      <tr><td>Generate</td><td>Cite; allow "I don't know"</td></tr>
+      <tr><td>Refresh</td><td>Same embedding model; re-run retrieval evals</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Retrieval by data shape</h4>
+    <table><thead><tr><th>Data / query</th><th>Strategy</th></tr></thead><tbody>
+      <tr><td>Docs, concepts</td><td>Hybrid + rerank</td></tr>
+      <tr><td>Part numbers, codes, IDs</td><td>BM25 + exact-match filters</td></tr>
+      <tr><td>Aggregates ("sales by region")</td><td>Read-only query tool</td></tr>
+      <tr><td>Live state (order, balance)</td><td>Tool call to system of record</td></tr>
+      <tr><td>Scoped by date / permission</td><td>Metadata filters</td></tr>
+      <tr><td>Multi-hop</td><td>Agentic iterative search</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <h4>Protocols and context strategy</h4>
+    <table><thead><tr><th>Mechanism</th><th>Choose when</th></tr></thead><tbody>
+      <tr><td>API / CLI</td><td>One consumer, deterministic call in code</td></tr>
+      <tr><td>MCP</td><td>One integration, many Claude clients; stdio local, Streamable HTTP + OAuth remote</td></tr>
+      <tr><td>Agent-to-agent</td><td>Independent (often cross-org) agents with own tools, state, policy</td></tr>
+      <tr><td>Monolithic context</td><td>Small, static, always needed: cache it</td></tr>
+      <tr><td>Progressive discovery</td><td>Large catalog, sparse use: tool search, Skills, retrieval</td></tr>
+    </tbody></table>
+    <p class="small" style="margin-top:2px">API MCP connector: tool calls only, public remote servers, not ZDR-eligible.</p>
+  </div>
+</div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Observability and reliability</h4>
+    <ul><li>Log: request ID, model, prompt version, tokens incl. cache, latency, <code>stop_reason</code>, tool calls + args, chunk IDs. Redact PII. One trace ID across agents</li><li><code>stop_reason: "refusal"</code> arrives as <b>HTTP 200</b>: instrument separately, set fallback per request</li><li>429: honor <code>retry-after</code>, ramp gradually · spend-cap 429: no <code>retry-after</code>, alert · 529 overloaded: backoff/fallback</li><li>Patterns: retries · fallbacks · circuit breakers</li></ul>
+  </div>
+  <div class="card">
+    <h4>Accuracy-latency and delivery routes</h4>
+    <ul><li>Levers: caching (TTFT) · fewer reranked chunks · lower effort · faster model on easy routes · parallel tools · streaming (perceived only). <b>Justify with eval numbers</b></li><li><b>Claude API:</b> full features, <code>inference_geo: "us"</code> · <b>Platform on AWS</b> · <b>Bedrock</b> (GovCloud FedRAMP High; some features missing) · <b>Vertex AI</b> (FedRAMP High) · <b>Foundry</b></li><li>Procurement, residency, FedRAMP rule routes out <b>before</b> latency or cost</li></ul>
+  </div>
+</div>
+<div class="card trap"><h4>D3 traps</h4><p>Logging instead of removing tools · "only access the user's records" in the prompt · vectors for IDs, aggregates, or live state · MCP for a single fixed call · final-answer-only logs · retrying a spend-cap 429 forever · streaming as an SLA fix.</p></div>
+</section>
+
+<!-- ============================ PAGE 4: D4 + D5 ============================ -->
+<section class="page">
+<div class="head"><div class="sec-h"><span class="code">D4</span><h2>Evaluation, Testing &amp; Optimization</h2><span class="meta"><b>16%</b> · ~10 items · Lesson 04</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Define metrics (accuracy, latency, cost, safety, security)</li><li>Design datasets and mixed-method test frameworks</li><li>A/B testing and iteration</li><li>Diagnose prompt failure, hallucination, model mismatch</li><li>Optimize tokens, latency, cost-performance</li><li>Monitor with logging and observability</li></ol></div></div>
+
+<div class="row r2">
+  <div class="card">
+    <h4>Evals are the gate</h4>
+    <table><thead><tr><th>Grader</th><th>Use for</th><th>Rule</th></tr></thead><tbody>
+      <tr><td>Code</td><td>Labels, schema, exact match, tests</td><td>Fastest, most reliable</td></tr>
+      <tr><td>LLM judge</td><td>Faithfulness, tone, rubric</td><td>Rubric · reason then score · validate vs. humans · different prompt/model</td></tr>
+      <tr><td>Human</td><td>Calibrate judge, spot checks</td><td>Gold; avoid at scale</td></tr>
+    </tbody></table>
+    <ul style="margin-top:2px"><li>Criteria: specific, measurable, achievable, relevant. Volume over hand-graded perfection. Held-out set</li><li>Agents: start with 20–50 real failures. <b>pass^k</b>: 75% per run × 3 runs ≈ 42%</li><li>Stages: offline → CI regression → online sampled judging</li></ul>
+  </div>
+  <div class="card">
+    <h4>Diagnose from what changed</h4>
+    <table><thead><tr><th>Trigger</th><th>Look at</th></tr></thead><tbody>
+      <tr><td>After document refresh</td><td>Retrieval / indexing</td></tr>
+      <tr><td>Fabricated specifics, retrieval fine</td><td>Hallucination: ground, cite, "I don't know"</td></tr>
+      <tr><td>Rule ignored on some inputs</td><td>Prompt: examples, structured outputs</td></tr>
+      <tr><td>Smaller model, one category fails</td><td>Model mismatch: route that category</td></tr>
+      <tr><td>Newer model, format drifts</td><td>Prompt tuned to old model: re-run evals</td></tr>
+      <tr><td>Cost spike after deploy</td><td>Cache hit rate (prefix changed)</td></tr>
+    </tbody></table>
+  </div>
+</div>
+<div class="row r2">
+  <div class="card">
+    <h4>A/B testing</h4>
+    <p>Hypothesis · one variable · primary + guardrail metrics · sample size up front · report effect size, don't overclaim. Offline evals before online tests. +2 points on 60 samples is noise.</p>
+  </div>
+  <div class="card">
+    <h4>Optimize cost per completed task</h4>
+    <p><b>Caching</b> (input + TTFT) · <b>Batch API 50%</b> (async, ≤ 24 h, 100k requests / 256 MB, not ZDR) · <b>routing</b> · <b>effort</b> · <b>output length</b> (output = 5× input price) · streaming = perceived latency only. Include retries and rework.</p>
+  </div>
+</div>
+
+<div class="head" style="margin-top:6px"><div class="sec-h"><span class="code">D5</span><h2>Governance, Safety &amp; Risk Management</h2><span class="meta"><b>14%</b> · ~9 items · Lesson 05</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Implement guardrails and safety controls</li><li>Identify risks, limitations, failure modes</li><li>Apply human-in-the-loop validation</li><li>Compliance (GDPR, HIPAA, FedRAMP)</li><li>Ethics: bias, fairness, transparency</li></ol></div></div>
+
+<div class="row r-60">
+  <div class="card">
+    <h4>The safety stack (fails closed)</h4>
+    <table><thead><tr><th>Layer</th><th>Control</th><th>Type</th></tr></thead><tbody>
+      <tr><td>Input</td><td>Injection/jailbreak screen (fast Haiku), PII redaction</td><td>Model + rules</td></tr>
+      <tr><td>System prompt</td><td>Scope, "say I don't know"</td><td><b>Guidance only</b></td></tr>
+      <tr><td>Tool calls</td><td>Least privilege, per-user authz, parameter limits, approvals</td><td><b>Deterministic</b></td></tr>
+      <tr><td>Output</td><td>Schema, PII leak, grounding, policy</td><td>Both</td></tr>
+      <tr><td>Audit</td><td>Inputs, tool calls, outputs, reviews</td><td>Deterministic</td></tr>
+    </tbody></table>
+    <p class="small" style="margin-top:2px"><b>Training reduces harm; the app enforces your rules.</b> Indirect injection: untrusted content in <code>tool_result</code>, screen tool outputs, limit what a hijacked agent can do ("no browser agent is immune").</p>
+  </div>
+  <div class="card">
+    <h4>Human-in-the-loop routing</h4>
+    <table><thead><tr><th></th><th>Reversible, low cost</th><th>Irreversible / high cost</th></tr></thead><tbody>
+      <tr><td>High conf.</td><td>Automate + sample</td><td>Approval first</td></tr>
+      <tr><td>Low conf.</td><td>Review queue</td><td>Human decides</td></tr>
+    </tbody></table>
+    <p class="small" style="margin-top:2px">Calibrate on labeled data, not self-reported confidence. Usage Policy high-risk areas need qualified human review + AI disclosure (expanded to 11 areas from Nov 12, 2026; "wholly favorable" decisions exempt).</p>
+  </div>
+</div>
+<div class="row r2">
+  <div class="card">
+    <h4>Compliance: obligation → control → owner → evidence</h4>
+    <ul><li><b>GDPR:</b> minimize before the call, residency/transfer + DPA, retention limits, human review of legal-effect decisions</li><li><b>HIPAA:</b> BAA before PHI; HIPAA readiness is permanent; Managed Agents and Claude Code not covered; no PHI in schemas</li><li><b>FedRAMP High:</b> Bedrock in AWS GovCloud (also IL4/5) or Vertex AI</li><li><b>ZDR not for:</b> Batch, Files API, Skills, code execution, MCP connector, Managed Agents</li></ul>
+  </div>
+  <div class="card">
+    <h4>Failure modes and fairness</h4>
+    <ul><li>Hallucination · prompt injection · excessive agency · <b>over-refusal</b> (measure false-refusal rate) · data leakage · sycophancy · cascading agent errors</li><li>Refusals return HTTP 200 with <code>stop_reason: "refusal"</code></li><li>Fairness: proxies survive column deletion. <b>Measure outcomes by group</b></li><li>Transparency for users, regulators, and your debugging team</li></ul>
+  </div>
+</div>
+<div class="card trap"><h4>D4 + D5 traps</h4><p>Model swap without evals · unvalidated judge · winner declared on a tiny sample · per-token cost thinking · Batch for live users · rule in the prompt only · fail open when a screen is down · self-rated confidence as router · "fair because we removed gender."</p></div>
+</section>
+
+<!-- ============================ PAGE 5: D6 + D7 + DAY ============================ -->
+<section class="page">
+<div class="head"><div class="sec-h"><span class="code">D6</span><h2>Stakeholder Communication &amp; Lifecycle</h2><span class="meta"><b>14%</b> · ~9 items · Lesson 06</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Structured discovery and requirements</li><li>Communicate decisions and trade-offs</li><li>Feedback loops and expectations (incl. SLAs)</li><li>Document architectures; implementation guidance</li><li>Lifecycle: discovery, design, handoff, monitoring, iteration</li></ol></div></div>
+
+<div class="row r3">
+  <div class="card"><h4>Discovery</h4><p>Process + baseline, volume, latency tolerance, cost of a wrong answer, reversibility, data location and sensitivity, regulatory and procurement constraints, the metric. <b>Write assumptions down.</b> Never open with technology.</p></div>
+  <div class="card"><h4>Approval</h4><p>Each option: <b>cost · risk · reversal</b>, in business terms. A recommendation and what would change your mind. Record it in an <b>ADR</b>.</p></div>
+  <div class="card"><h4>Handoff</h4><p>Diagrams, ADRs, prompt/config registry, <b>eval suite + thresholds</b>, <b>runbooks</b> (symptom → action → owner), named owners. Test: the team ships and rolls back without you.</p></div>
+</div>
+<div class="row r2">
+  <div class="card"><h4>SLAs and loops</h4><ul><li>Measured: p95 latency, quality floor on sampled review, availability, cost ceiling</li><li>Fallback when degraded; breach → owner + deadline</li><li><b>Iterate</b> on local failures; <b>re-architect</b> on structural ones</li><li>Never promise "always correct"</li></ul></div>
+  <div class="card"><h4>Lifecycle</h4><ul><li>Deprecation: ≥ <b>60 days'</b> notice; Bedrock/Google set own dates → eval successor, re-baseline cost/latency, migrate before retirement</li><li>Pilot: business-critical but low risk; agree <b>graduation criteria</b> (performance, operations, risk)</li><li>"Must run in our AWS" → Bedrock first</li></ul></div>
+</div>
+
+<div class="head" style="margin-top:6px"><div class="sec-h"><span class="code">D7</span><h2>Developer Productivity &amp; Operational Enablement</h2><span class="meta"><b>7%</b> · ~4 items · Lesson 07</span></div>
+<div class="objectives"><span class="lbl">Objectives</span><ol><li>Configure Claude tools and environments for teams (e.g., Claude Code)</li><li>Improve developer workflows with AI tooling</li><li>Support debugging and operational issue resolution</li></ol></div></div>
+<div class="row r-60">
+  <div class="card"><h4>Which layer?</h4>
+    <table><thead><tr><th>Scope</th><th>Put here</th></tr></thead><tbody>
+      <tr><td>Managed (no opt-out)</td><td>Deny rules, MCP allowlist, marketplace limits, no bypass mode, telemetry</td></tr>
+      <tr><td>Project (committed)</td><td><code>CLAUDE.md</code>, <code>.claude/settings.json</code>, hooks, <code>.mcp.json</code>, skills</td></tr>
+      <tr><td>Local (gitignored)</td><td><code>settings.local.json</code>, <code>CLAUDE.local.md</code></td></tr>
+      <tr><td>User</td><td>Personal preferences</td></tr>
+    </tbody></table>
+    <p class="small" style="margin-top:2px">Precedence: managed → CLI → local → project → user. Permissions: <b>deny → ask → allow</b>.</p>
+  </div>
+  <div class="card"><h4>Guidance vs. enforcement</h4><ul><li><code>CLAUDE.md</code> = guidance</li><li>Permissions, <b>hooks</b> (exit 2 blocks), managed settings = enforcement</li><li>CI: <code>claude -p</code>, JSON output, scoped tools, GitHub Action; humans approve; independent reviewer</li><li>Rollout: pilot → shared config → champions → wider; Skills via plugins; spend limits + OTel</li><li>Runbooks map symptoms to architecture causes</li></ul></div>
+</div>
+
+<div class="head" style="margin-top:6px"><div class="sec-h"><span class="code">DAY</span><h2>Exam-day strategy</h2><span class="meta">Lesson 08</span></div></div>
+<div class="row r2">
+  <div class="card"><h4>Cue → answer</h4>
+    <table class="notbold"><tbody>
+      <tr><td>"only ever need"</td><td>Remove tools</td></tr>
+      <tr><td>"must always", "never"</td><td>Code, hooks, permissions, schema</td></tr>
+      <tr><td>"same prompt every request"</td><td>Caching, static first</td></tr>
+      <tr><td>"overnight", "not user-facing"</td><td>Batch API</td></tr>
+      <tr><td>"after a document refresh"</td><td>Retrieval / indexing</td></tr>
+      <tr><td>"steps are known"</td><td>Workflow</td></tr>
+      <tr><td>"live status", "balance"</td><td>Tool call, not RAG</td></tr>
+      <tr><td>"across organizations"</td><td>Agent-to-agent</td></tr>
+      <tr><td>"every developer, no opt-out"</td><td>Managed settings</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h4>Process</h4><ol class="rules"><li>Read the last sentence first</li><li>Find the trigger or constraint</li><li>Predict, then read options</li><li>Label each wrong option with a pattern</li><li>Pace: item 21 @ 40 min, 42 @ 80, 63 @ 110</li><li>Flag &gt; 2.5 min; never leave blanks</li><li>Multiple-response: each option true/false; assume all-or-nothing</li></ol>
+  <p class="foot-note">Practice: <b>questions/quiz.html</b> (60 items) · <b>anki/ccar-p-flashcards.apkg</b> (60 cards) · exercises 00–07.</p></div>
+</div>
+</section>
+
+</body>
+</html>

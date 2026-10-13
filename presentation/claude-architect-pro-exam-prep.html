@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Claude Architect Pro Exam Prep · Live Deck</title>
+  <!--
+    Live presenter deck for "Claude Certified Architect – Professional Exam Prep".
+    Press P for presenter notes, C to clone the window for a second screen.
+  -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+    body { font-family: 'Inter', -apple-system, sans-serif; }
+
+    .remark-slide-content {
+      background: #f5f0e6;
+      color: #1a1a1a;
+      padding: 1.2em 2em;
+      font-size: 26px;
+      line-height: 1.4;
+    }
+    .remark-slide-content h1 { font-size: 1.7em; font-weight: 800; margin: 0.2em 0 0.4em; }
+    .remark-slide-content h2 { font-size: 1.25em; font-weight: 600; margin: 0.2em 0; color: #444; }
+    .remark-slide-content strong { font-weight: 700; }
+    .remark-slide-content em { color: #555; }
+    .remark-slide-content code, .remark-slide-content tt {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ebe4d4;
+      padding: 0.05em 0.3em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    .remark-slide-content blockquote {
+      border-left: 4px solid #d9a441;
+      padding: 0.4em 1em;
+      margin: 0.6em 0;
+      background: #fbf6e8;
+      font-style: italic;
+      color: #2a2a2a;
+    }
+
+    /* Tables: white field, dark header, ruled rows */
+    .remark-slide-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.6em;
+      font-size: 0.78em;
+      background: #fff;
+      border: 2px solid #1a1a1a;
+    }
+    .remark-slide-content th, .remark-slide-content td {
+      text-align: left;
+      vertical-align: top;
+      padding: 0.5em 0.7em;
+      border-bottom: 1px solid #ddd5c0;
+    }
+    .remark-slide-content thead th {
+      background: #1a1a1a;
+      color: #f5f0e6;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.85em;
+    }
+    .remark-slide-content tbody tr:last-child td { border-bottom: none; }
+    .remark-slide-content tbody tr:nth-child(even) td { background: #faf7ee; }
+    .remark-slide-content tbody td:first-child { font-weight: 700; color: #b85c1f; }
+    /* Dense tables (7+ rows) step down one size */
+    .dense table { font-size: 0.68em; }
+    .dense th, .dense td { padding: 0.35em 0.6em; }
+
+    /* TITLE slides: dark, four-color top bar */
+    .title {
+      background: #1c1c1c;
+      color: #f5f0e6;
+      padding: 4em 2.5em 2em;
+      border-top: 12px solid;
+      border-image: linear-gradient(to right, #e26b5a 0%, #e26b5a 25%, #e7c548 25%, #e7c548 50%, #7eb069 50%, #7eb069 75%, #66a3d2 75%, #66a3d2 100%) 1;
+    }
+    .title h1 { font-size: 2.4em; line-height: 1.05; margin-bottom: 0.2em; color: #f5f0e6; }
+    .title h2 { color: #c9c4b5; font-weight: 400; font-size: 1.05em; }
+    .title a { color: #66a3d2; }
+    .title .session-label {
+      color: #e7c548; font-size: 0.75em; letter-spacing: 0.2em;
+      font-weight: 700; margin-bottom: 1em;
+    }
+    .title .footer {
+      position: absolute; bottom: 1.5em; left: 2.5em;
+      color: #e7c548; font-size: 0.6em; font-weight: 600;
+    }
+    .title .footer span { color: #888; font-weight: 400; display: block; margin-top: 0.2em; }
+
+    /* SECTION DIVIDER: title slide + domain chips + clock */
+    .divider { padding-top: 3em; }
+    .divider h1 { font-size: 2.1em; }
+    .divider .chips { display: block; margin-top: 1.2em; }
+    .divider .chip {
+      display: inline-block; border: 2px solid #e7c548; color: #f5f0e6;
+      padding: 0.3em 0.75em; margin: 0 0.5em 0.5em 0;
+      font-size: 0.75em; font-weight: 600;
+    }
+    .divider .chip strong { color: #e7c548; }
+
+    /* EYEBROW label above slide headline */
+    .eyebrow-label {
+      color: #b85c1f; font-size: 0.6em; letter-spacing: 0.15em;
+      font-weight: 700; text-transform: uppercase; margin-bottom: 0.2em;
+    }
+
+    /* SINGLE-STAT hero */
+    .stat { text-align: center; padding-top: 1.5em; }
+    .stat .hero { font-size: 5.5em; font-weight: 800; color: #b85c1f; line-height: 1; margin: 0.2em 0; }
+    .stat .caption { font-size: 0.95em; color: #444; margin-top: 0.4em; }
+
+    /* PULL QUOTE slide */
+    .quote-slide { padding-top: 2em; text-align: center; }
+    .quote-slide .quote-body { font-size: 1.5em; font-style: italic; color: #1a1a1a; max-width: 22em; margin: 0.5em auto; line-height: 1.35; }
+    .quote-slide .attrib { font-size: 0.75em; color: #777; margin-top: 1em; font-style: normal; letter-spacing: 0.05em; }
+
+    /* TWO-COLUMN compare */
+    .two-col { display: flex; gap: 1.5em; margin-top: 0.6em; }
+    .two-col > div { flex: 1; padding: 1em; border: 2px solid #1a1a1a; background: #fff; font-size: 0.85em; }
+    .two-col .col-head { font-weight: 700; color: #b85c1f; margin-bottom: 0.4em; letter-spacing: 0.05em; }
+    .two-col .col-head.green { color: #4d8a3a; }
+    .two-col .col-head.blue  { color: #4078a8; }
+    .two-col .col-head.amber { color: #c89020; }
+    .two-col ul { margin: 0.2em 0; padding-left: 1.1em; }
+    .two-col li { margin-bottom: 0.25em; }
+
+    /* CARD grids */
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.8em; margin-top: 0.5em; }
+    .grid-4 .card { background: #fff; border: 2px solid #1a1a1a; padding: 0.8em 0.55em; font-size: 0.85em; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8em; margin-top: 0.5em; }
+    .grid-3 .card { background: #fff; border: 2px solid #1a1a1a; padding: 0.8em; font-size: 0.9em; }
+    .grid-3 .tag, .grid-4 .tag { font-weight: 700; letter-spacing: 0.08em; display: block; margin-bottom: 0.3em; }
+    .grid-3 .tag { font-size: 1.05em; }
+    .grid-4 .tag { font-size: 1.05em; letter-spacing: 0.03em; white-space: nowrap; }
+    .grid-3 .w-tag, .grid-4 .w-tag { color: #b85c1f; }
+    .grid-3 .s-tag, .grid-4 .s-tag { color: #c89020; }
+    .grid-3 .c-tag, .grid-4 .c-tag { color: #4d8a3a; }
+    .grid-3 .i-tag, .grid-4 .i-tag { color: #4078a8; }
+    .card .maps { display: block; margin-top: 0.5em; font-size: 0.85em; font-weight: 700; color: #777; letter-spacing: 0.05em; }
+
+    /* Numbered list / takeaways */
+    .takeaways ol { list-style: none; padding-left: 0; margin-top: 0.5em; }
+    .takeaways li { display: flex; align-items: flex-start; margin-bottom: 0.55em; }
+    .takeaways li .num {
+      display: inline-block; width: 1.7em; height: 1.7em; line-height: 1.7em;
+      background: #1a1a1a; color: #f5f0e6; text-align: center;
+      font-weight: 700; margin-right: 0.8em; flex-shrink: 0;
+    }
+    .takeaways li .body strong { display: block; font-size: 1em; }
+    .takeaways li .body span { color: #555; font-size: 0.8em; display: block; margin-top: 0.1em; }
+
+    /* Verbatim objectives list */
+    .objectives ul { padding-left: 1.1em; }
+    .objectives li { margin-bottom: 0.45em; font-size: 0.92em; }
+    .source-line { display: block; color: #777; font-size: 0.6em; margin-top: 1em; font-style: italic; }
+
+    /* LIVE DEMO slides: blue field, banner with a red "recording" dot */
+    .demo {
+      background: #e9f0f6;
+      border-left: 16px solid #4078a8;
+    }
+    .demo-banner {
+      display: block; background: #4078a8; color: #fff;
+      font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;
+      font-size: 0.62em; padding: 0.4em 0.9em; margin-bottom: 0.4em;
+    }
+    .demo-banner::before {
+      content: ''; display: inline-block; width: 0.75em; height: 0.75em;
+      border-radius: 50%; background: #e26b5a; margin-right: 0.7em;
+      vertical-align: -0.05em; box-shadow: 0 0 0 3px rgba(255,255,255,0.35);
+    }
+    .demo h1 { font-size: 1.4em; margin: 0.1em 0 0.3em; }
+    .demo ul { margin: 0.2em 0 0.4em; padding-left: 1em; font-size: 0.76em; }
+    .demo li { margin-bottom: 0.2em; }
+    .demo li strong { color: #4078a8; }
+
+    /* Prompt blocks (fenced code) */
+    .remark-slide-content pre { margin: 0.4em 0; }
+    .remark-slide-content pre code, .remark-slide-content .remark-code {
+      display: block; background: #1c1c1c; color: #f5f0e6;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6em; line-height: 1.45; padding: 0.7em 1em;
+      white-space: pre-wrap; border-radius: 4px;
+    }
+    .remark-code-line { white-space: pre-wrap; }
+
+    /* EXAM-STYLE QUESTION slides */
+    .question { background: #fff8ea; }
+    .answer { background: #f2f7ef; }
+    .q-label {
+      display: block; color: #b85c1f; font-size: 0.6em; letter-spacing: 0.15em;
+      font-weight: 700; text-transform: uppercase; margin-bottom: 0.5em;
+      border-bottom: 2px solid #b85c1f; padding-bottom: 0.3em;
+    }
+    .answer .q-label { color: #4d8a3a; border-color: #4d8a3a; }
+    .stem { display: block; font-size: 0.88em; line-height: 1.4; }
+    .options ul { list-style: none; padding-left: 0; margin-top: 0.6em; }
+    .options li {
+      background: #fff; border: 2px solid #1a1a1a; padding: 0.28em 0.7em;
+      margin-bottom: 0.35em; font-size: 0.78em;
+    }
+    .correct {
+      display: block; background: #4d8a3a; color: #fff;
+      padding: 0.45em 0.9em; font-weight: 700; font-size: 0.9em;
+    }
+    .answer table { font-size: 0.7em; }
+
+    /* Q&A / break cue */
+    .cue { text-align: center; }
+    .cue h1 { font-size: 2.6em; }
+    .cue .eyebrow-label { font-size: 0.8em; }
+  </style>
+</head>
+<body>
+  <textarea id="source">
+
+class: title
+
+.session-label[O'REILLY LIVE TRAINING · 2 HOURS]
+
+# Claude Certified Architect – Professional Exam Prep
+
+## Cut to the chase for CCAR-P: the blueprint, the decision patterns, and the traps that cost points.
+
+.footer[Claude Certified Architect – Professional (CCAR-P)<span>O'Reilly Live Training · Lucas Soares</span>]
+
+???
+Welcome. Two hours, five segments, seven domains, eleven exam-style questions, five hands-on exercises.
+
+Goal: by the end, every attendee can read a CCAR-P item, find the trigger in the stem, name the distractor pattern behind each wrong option, and pick the structural fix.
+
+Ask people to clone the repo. Exercises live in `exercises/`, 60 practice questions in `questions/`, the Anki deck in `anki/`.
+
+All practice questions are original. The three official samples come from the public exam guide.
+
+---
+
+# Today's plan
+
+| Segment | Clock | Domains | Weight |
+|---|---|---|---|
+| 1 · The exam + solution design | 0:00–0:25 | Blueprint + D1 | 17% |
+| 2 · Models, context, integration | 0:25–1:00 | D2 + D3 | 32% |
+| 3 · Evaluation + governance | 1:00–1:30 | D4 + D5 | 30% |
+| 4 · Stakeholders + team enablement | 1:30–1:50 | D6 + D7 | 21% |
+| 5 · Exam strategy + study plan | 1:50–2:00 | All | · |
+
+*Repo: lessons, exercises, 60 practice questions, 60 Anki cards, cheatsheet.*
+
+???
+Time follows weight. Segment 2 gets the most time because Integration alone is 19%, the biggest domain.
+
+Break at the end of Segment 2.
+
+---
+
+class: title, divider
+
+.session-label[SEGMENT 1 · 0:00 → 0:25 · 25 MIN]
+
+# The exam and solution design
+
+.chips[
+.chip[Exam blueprint · all 7 domains]
+.chip[D1 Solution Design & Architecture · **17%**]
+]
+
+.footer[Lessons 00 + 01<span>Exercises 00 + 01</span>]
+
+???
+Budget: ~8 min on the exam, ~4 min on Sample 1, ~13 min on D1.
+
+---
+
+# The exam at a glance
+
+| Item | Detail |
+|---|---|
+| Format | **63 items** · multiple-choice + multiple-response ("select N") |
+| Time | 120 min · **~1 min 54 s per item** |
+| Pass | Scaled **720** on 100–1,000 · 720 ≠ 72% raw |
+| Delivery | **$175** · Pearson VUE, online or test center |
+| Prereqs | **None.** Architect – Foundations is not required |
+| Validity | 12 months · free on-time renewal |
+
+???
+All from the official Exam Guide v1.0, July 2026. Exam code CCAR-P.
+
+Retakes: 14 days, then 30, then 90. Max 4 attempts in 12 months. Each attempt pays the fee.
+
+Reschedule: the guide says 24 hours; FAQ and policies pages say 48. Tell people to use 48.
+
+Registration needs a Claude Partner Network company email.
+
+The score report shows percent-correct by domain, but only the total scaled score decides pass/fail.
+
+---
+
+.eyebrow-label[Who the exam is written for]
+
+# The minimally qualified candidate
+
+> "an experienced practitioner who combines an engineering mindset with practical, real-world experience deploying AI solutions."
+
+- Designs end-to-end: prompts, context, **RAG**, APIs, orchestration, **evals**
+- Weighs every choice on five axes: **cost · latency · performance · safety · maintainability**
+- Recommended: 3+ years architecture, 6+ months Claude in production
+
+???
+Quote from Section 4 of the guide.
+
+The five axes are the lens for every item. When two options look right, ask which one a senior architect would defend on all five.
+
+Not for: entry-level devs, or people whose work is "limited to isolated tasks such as prompt writing without broader system design responsibility."
+
+Compared with Architect – Foundations: Foundations tests implementation detail (stop_reason, tool_choice, .mcp.json). Professional names no API parameters in its objectives. It tests decisions. 35% of it (D5–D7) has no Foundations counterpart.
+
+---
+
+class: dense
+
+# The blueprint: seven weighted domains
+
+| # | Domain | Weight | ≈ Items |
+|---|---|---|---|
+| D1 | Solution Design & Architecture | 17% | 11 |
+| D2 | Claude Models, Prompting & Context Engineering | 13% | 8 |
+| **D3** | **Integration** | **19%** | **12** |
+| D4 | Evaluation, Testing & Optimization | 16% | 10 |
+| D5 | Governance, Safety & Risk Management | 14% | 9 |
+| D6 | Stakeholder Communication & Lifecycle | 14% | 9 |
+| D7 | Developer Productivity & Operational Enablement | 7% | 4 |
+
+**D1 + D3 + D4 = 52%.** Design, integrate, measure.
+
+???
+Item counts are my rounding of weight × 63. The guide publishes weights only.
+
+38 objectives in total, all verbatim in the lessons.
+
+Engineers tend to skip D6. It's 14%, about 9 items. Same as safety.
+
+---
+
+# Six distractor patterns
+
+| Pattern | Sounds like |
+|---|---|
+| Bigger model | "Switch to a larger model that follows instructions better." |
+| Watch, don't remove | "Add logging." "Add a confirmation step." |
+| Prompt as policy | "Add to the system prompt that it must never…" |
+| Lossy shortcut | "Truncate the document." "Smallest model regardless of fit." |
+| Wrong trigger | "The weights changed." "Temperature is too low." |
+| Over-engineering | "Split it into five specialized agents." |
+
+**Right answer: the structural fix that matches the trigger and keeps the needed capability.**
+
+???
+The first, second, fourth and fifth come straight from wrong options in the three official samples. Prompt-as-policy and over-engineering are the most common wrong answers across architect-level practice material.
+
+When you can name the pattern, you eliminate the option in seconds.
+
+---
+
+class: question
+
+.q-label[Official sample 1 · D3 Integration · exam guide, Section 8]
+
+.stem[A team exposes a customer-support agent that can read tickets, draft replies, issue refunds, and delete user accounts. Support staff only ever need to read tickets and draft replies. Applying least-privilege principles, which change best reduces risk?]
+
+.options[
+- **A.** Add logging to the refund and delete tools so misuse can be audited later.
+- **B.** Remove the refund and delete tools from the agent's configuration entirely.
+- **C.** Keep all tools but add a confirmation prompt before refunds and deletions.
+- **D.** Replace the agent with a larger model that follows instructions more reliably.
+]
+
+???
+Ask the room to type a letter before the reveal. Trigger: "only ever need to read tickets and draft replies."
+
+---
+
+class: answer
+
+.q-label[Official sample 1 · Answer]
+
+.correct[B · Remove the refund and delete tools entirely]
+
+| Option | Pattern | Why it fails |
+|---|---|---|
+| A | Watch, don't remove | Detective control: records damage after it happens |
+| C | Watch, don't remove | Compensating control: capability still reachable by injection |
+| D | Bigger model | Model size doesn't change authorization scope |
+
+*Remove capability before you guard it.*
+
+???
+Guide rationale: least privilege means "eliminating the attack surface rather than monitoring or guarding it."
+
+---
+
+.eyebrow-label[D1 · Solution Design & Architecture · 17%]
+
+# What the exam asks
+
+.objectives[
+- Translate business problems into Claude-based AI solutions
+- Design end-to-end architectures (input → processing → output → feedback loops)
+- Select appropriate architectural patterns (workflow, agentic, augmented LLM)
+- Design multi-agent systems and orchestration strategies
+- Apply decomposition techniques for complex problem solving
+- Align solutions to business value pillars (efficiency, transformation, productivity, cost, performance SLAs)
+]
+
+.source-line[Verbatim from the CCAR-P Exam Guide v1.0, Section 6]
+
+???
+The official prep course frames D1 as four decisions made before code. Next slide.
+
+---
+
+# Four decisions, in this order
+
+.takeaways[
+<ol>
+<li><span class="num">1</span><div class="body"><strong>Ownership</strong><span>What Claude does, what existing systems do, what humans do</span></div></li>
+<li><span class="num">2</span><div class="body"><strong>Shape</strong><span>Augment a live interaction · automate a workflow · deploy an agent</span></div></li>
+<li><span class="num">3</span><div class="body"><strong>Reference architecture</strong><span>Name the pattern you're committing to</span></div></li>
+<li><span class="num">4</span><div class="body"><strong>Entry point</strong><span>Model, context strategy, surface, delivery route</span></div></li>
+</ol>
+]
+
+*"Getting these out of order is the most reliable path to an expensive pivot."*
+
+???
+From the official prep course 1 overview.
+
+Ownership lens: the four AI properties. Next-token prediction → systems own exact figures. Knowledge → retrieval or live tools own changing facts. Working memory → systems own state. Steerability → code owns control flow and hard rules. Humans own consequential, irreversible decisions.
+
+---
+
+# Climb the ladder only on evidence
+
+| Rung | What it is | What it costs |
+|---|---|---|
+| **Augmented LLM** | One call + retrieval, tools, memory | Least flexible |
+| **Workflow** | Predefined code paths | Can't adapt to surprises |
+| **Agent** | LLM directs its own steps in a loop | Latency, tokens, compounding errors |
+| **Multi-agent** | Orchestrator + subagents | **~15× the tokens** of chat |
+
+*If you can draw the flowchart in advance, it's a workflow.*
+
+???
+"Building effective agents": find the simplest solution possible; this might mean not building agentic systems at all.
+
+Agents fit when the number of steps is unpredictable and the environment returns ground truth each step (tool results, tests). Always give them stopping conditions and a sandbox.
+
+Multi-agent research system numbers: beat single agent by 90.2% on Anthropic's internal research eval; agents ≈ 4× chat tokens, multi-agent ≈ 15×.
+
+---
+
+class: dense
+
+# Five workflows, five cues
+
+| Pattern | Use when | Cue in the stem |
+|---|---|---|
+| Prompt chaining | Fixed sequential steps with gates | "extract, then validate, then…" |
+| Routing | Distinct input categories | "simple vs. complex", "by type" |
+| Parallelization | Independent parts, or voting for confidence | "at the same time", "several reviewers" |
+| Orchestrator-workers | Subtasks unknown until input is seen | "varies per request", "across sources" |
+| Evaluator-optimizer | Clear rubric + iteration helps | "style guide", "refine until" |
+
+???
+Guardrails fit sectioning: one instance answers while another screens. Anthropic says that beats one call doing both.
+
+---
+
+# Multi-agent: when it pays
+
+.two-col[
+<div>
+<div class="col-head green">MULTI-AGENT FITS</div>
+<ul>
+<li>Breadth-first research</li>
+<li>Many independent sources</li>
+<li>Information exceeds one context</li>
+<li>Task value pays for ~15× tokens</li>
+</ul>
+</div>
+<div>
+<div class="col-head">MULTI-AGENT FAILS</div>
+<ul>
+<li>Tightly coupled work (most coding)</li>
+<li>All agents need the same context</li>
+<li>Real-time coordination</li>
+<li>Assuming subagents share memory</li>
+</ul>
+</div>
+]
+
+**Subagents start with only what you pass them.** Give each one its task, constraints, output format, and its own scoped tools.
+
+???
+Classic exam item: subagent ignores a constraint the user gave the orchestrator. Answer: pass it explicitly. Distractor: bigger model for subagents.
+
+Decomposition techniques worth naming: pipeline, map-reduce, local + integration pass (big code reviews), specialist, plan-then-execute.
+
+---
+
+class: demo
+
+.demo-banner[Exercise 1 · Ownership, shape, pattern · ~6 min]
+
+# Five problems, four lines each
+
+- **File:** `exercises/01-pattern-selection.md`
+- **Do:** for claims intake, a contact-center copilot, weekly competitor research, a repo migration, and localization, write: ownership · shape · pattern · cost
+- **Watch for:** RAG doing a job live state should own (order status), and agents where the steps are known
+
+???
+Do two problems live (A and B), assign the rest. Reference answers are in the file.
+
+A: workflow + routing, batch. B: augmented LLM with a live tool. C: orchestrator-workers. D: single coding agent per module. E: parallel + evaluator-optimizer.
+
+---
+
+class: center, middle, cue
+
+.eyebrow-label[Segment 1 complete]
+
+# Q&A
+
+???
+Two minutes.
+
+---
+
+class: title, divider
+
+.session-label[SEGMENT 2 · 0:25 → 1:00 · 35 MIN]
+
+# Models, context, and integration
+
+.chips[
+.chip[D2 Models, Prompting & Context · **13%**]
+.chip[D3 Integration · **19%**]
+]
+
+.footer[Lessons 02 + 03<span>Exercises 02 + 03 · prompt_caching.py</span>]
+
+???
+~13 min D2, ~20 min D3, 2 min Q&A, then break.
+
+---
+
+.eyebrow-label[D2 · Models, Prompting & Context · 13%]
+
+# What the exam asks
+
+.objectives[
+- Select appropriate Claude models based on trade-offs
+- Design system prompts, templates, and guardrails
+- Apply prompt engineering techniques (zero-shot, few-shot, chain-of-thought)
+- Optimize context windows and manage token usage
+- Implement prompt reuse strategies (caching, modular prompts, Skills)
+]
+
+.source-line[Verbatim from the CCAR-P Exam Guide v1.0, Section 6]
+
+???
+No model versions in the objectives. Teach the reasoning; the lineup will move.
+
+---
+
+# Model choice is a measured trade-off
+
+| Model (Oct 2026) | Fit | $/MTok in · out |
+|---|---|---|
+| Fable 5.1 | Hardest reasoning, long-horizon agents | 10 · 50 |
+| Opus 5.5 | Agentic coding, knowledge work · "start here" | 4 · 20 |
+| Sonnet 5.5 | Speed + intelligence | 2 · 10 |
+| Haiku 5.5 | Classification, extraction, routing at volume | 0.10 · 0.50 |
+
+**Decide on your eval set. Tune effort before switching models. Compare cost per completed task.**
+
+???
+From the models overview and pricing pages, October 2026. All four: 1M context, 128K output.
+
+Anthropic: "Tuning effort is often a better lever than switching models." Use-case benchmark tests are "the most important step."
+
+Two valid strategies: efficiency-first (start small, upgrade on a measured gap) or capability-first (start large, lower effort or downgrade while evals hold).
+
+Route by difficulty: small model for the easy bulk, larger for the hard tail.
+
+---
+
+class: question
+
+.q-label[Official sample 2 · D2 Models, Prompting & Context · exam guide, Section 8]
+
+.stem[An application sends the same 8,000-token system prompt and policy document on every request, followed by a short, varying user message. Latency and cost are both concerns. Which optimization most directly addresses both?]
+
+.options[
+- **A.** Truncate the policy document to the first 1,000 tokens.
+- **B.** Switch to the smallest available model regardless of task fit.
+- **C.** Place the static system prompt and policy before the dynamic content and enable prompt caching.
+- **D.** Move the policy document into a few-shot example block.
+]
+
+???
+Trigger: "the same 8,000-token system prompt on every request" + "latency and cost."
+
+---
+
+class: answer
+
+.q-label[Official sample 2 · Answer]
+
+.correct[C · Static content first, then enable prompt caching]
+
+| Option | Pattern | Why it fails |
+|---|---|---|
+| A | Lossy shortcut | Discards required policy |
+| B | Lossy shortcut | "Regardless of task fit" |
+| D | Wrong mechanism | Few-shot teaches format; no cacheable prefix |
+
+*Caching matches an exact prefix: tools → system → messages, static → dynamic.*
+
+???
+Caching facts: up to 4 breakpoints; 5-min TTL (write 1.25×) or 1-hour (write 2×); reads a fraction of base input; minimum 512 tokens on current models. Cached reads don't count toward ITPM limits on most models. Anthropic: caching is "the largest lever by a wide margin" for agent loops.
+
+Silent cache killers: timestamp or user ID at the top, reordered tools, changing effort between requests.
+
+---
+
+class: dense
+
+# Prompting and context: the decision table
+
+| Need | Use |
+|---|---|
+| Exact format or tricky mapping | 3–5 diverse **few-shot** examples + **structured outputs** |
+| Multi-step reasoning | Higher **effort** / reasoning before the answer; arithmetic to a tool |
+| Guaranteed JSON shape | **Structured outputs** or strict tool use (prefill and forced `tool_choice` error on new models) |
+| Long document Q&A | Document first, question last, quotes before answer |
+| Long agent sessions | Context editing · compaction · memory tool · a persistent facts block |
+| Knowledge base < ~200k tokens | All in context, cached. Skip RAG |
+| Many reusable procedures | **Agent Skills** (progressive disclosure, ~100 tokens each until used) |
+
+???
+Context-engineering goal from Anthropic: "the smallest possible set of high-signal tokens." A 1M window doesn't make more context better.
+
+System prompts carry role, scope, tone, "say I don't know." Hard limits, authorization and secrets do not belong there.
+
+---
+
+class: demo
+
+.demo-banner[Exercise 2 · Break the cache · ~4 min]
+
+# One timestamp, three layouts
+
+- **Run:** `uv run exercises/scripts/prompt_caching.py`
+- **Watch:** `cache_write` vs. `cache_read` per call
+- **Layouts:** static prefix → timestamp first → timestamp after the cached block
+
+```
+1) cache_write=2483  cache_read=     0
+   cache_write=   0  cache_read=  2483
+2) cache_write=2511  cache_read=     0   (every call)
+3) cache_write=   0  cache_read=  2483
+```
+
+???
+Numbers on the slide are illustrative. Run it live if you have a key.
+
+Debrief: one misplaced dynamic value converts a saving into a write premium on every request. This is practice question Q40.
+
+---
+
+.eyebrow-label[D3 · Integration · 19% · the largest domain]
+
+# What the exam asks
+
+.objectives[
+- Evaluate tool/agent configuration for capability bloat
+- Analyze authentication and authorization requirements to identify security gaps
+- Evaluate accuracy-latency trade-offs and justify configuration decisions
+- Analyze observability challenges and select monitoring strategies at scale
+- Design a RAG pipeline with appropriate chunking and indexing strategies
+- Apply retrieval strategies matched to data shape and query pattern
+- Evaluate connection protocols (MCP, API/CLI, agent-to-agent)
+- Evaluate progressive discovery vs. monolithic context strategy
+]
+
+.source-line[Verbatim from the CCAR-P Exam Guide v1.0, Section 6 (last two abridged)]
+
+???
+Eight objectives, about twelve items. Spend time here.
+
+---
+
+class: dense
+
+# Tools and identity: find the gap
+
+| Finding | Fix |
+|---|---|
+| 50+ tools, wrong picks, context burned | Scoped sub-agents · consolidate · **tool search** with `defer_loading` |
+| Tools the role never uses | **Remove them** |
+| Shared admin service account | Per-user delegated OAuth tokens bound to the session |
+| Identity from model text (`user_email` arg) | Identity from SSO; authorize server-side |
+| MCP token passthrough | Validate tokens issued for the server; own downstream creds |
+| API key in the browser or prompt | Backend proxy; secrets stay server-side |
+| JIT provisioning only | SCIM, so IdP removal deprovisions |
+
+???
+Every row is a classic distractor-pair: the wrong answer puts the rule in the prompt or adds logging.
+
+Tool search: tools with defer_loading are loaded on demand and don't break the prompt cache.
+
+---
+
+# RAG: design the pipeline
+
+| Stage | Exam answer |
+|---|---|
+| Before RAG | < ~200k tokens (~500 pages)? Long context + caching |
+| Chunking | Structure-aware: headings, whole tables and procedures |
+| Contextual retrieval | 50–100 tokens of context per chunk: failures **−35% / −49% / −67%** |
+| Index | **Hybrid**: embeddings + BM25 + metadata filters |
+| Retrieve | Wide (top-20), then **rerank** |
+| Refresh | Re-index with the same embedding model; re-run retrieval evals |
+
+???
+Contextual Retrieval numbers: −35% contextual embeddings, −49% adding contextual BM25, −67% adding reranking.
+
+Official Sample 3 (next segment) is a refresh/indexing failure.
+
+---
+
+# Match retrieval to the data
+
+| Data / query | Strategy |
+|---|---|
+| Docs, conceptual questions | Hybrid embeddings + rerank |
+| Part numbers, error codes, IDs | **BM25** + exact-match filters |
+| "Q3 sales by region" | **Query tool** (read-only SQL / API) |
+| Order status, balance, inventory | **Tool call** to the system of record |
+| Permission- or date-scoped | Metadata filters at retrieval |
+| Multi-hop | Agentic, iterative search |
+
+*Retrieval over a nightly index is the wrong owner for live state.*
+
+???
+Live state vs. retrieval comes from the official prep course objective: "recognize when retrieval is doing a job that live-state should own."
+
+---
+
+# API, MCP, or agent-to-agent?
+
+.grid-3[
+.card[
+.tag.i-tag[API / CLI]
+One consumer. Deterministic call at a known step in code.
+.maps[Not when many clients need it]
+]
+.card[
+.tag.c-tag[MCP]
+One integration reused by many Claude clients. Tools, resources, prompts. stdio local · Streamable HTTP + OAuth remote.
+.maps[Not for one fixed call]
+]
+.card[
+.tag.w-tag[AGENT-TO-AGENT]
+Independent agents, often cross-org, each owning tools, state, and policy.
+.maps[Not when a tool would do]
+]
+]
+
+**Progressive discovery** (tool search, Skills, retrieval) beats **monolithic context** for large catalogs with sparse use. Monolithic wins for small, static, always-needed context. Cache it.
+
+???
+The API's MCP connector: tool calls only, public remote servers only, not ZDR-eligible.
+
+Delivery routes: direct API (full features, `inference_geo: "us"`), Claude Platform on AWS, Bedrock (GovCloud, FedRAMP High; some features missing), Vertex AI (FedRAMP High), Microsoft Foundry. Procurement and compliance rule routes out first.
+
+---
+
+# Observability: what dashboards miss
+
+| Signal | Trap |
+|---|---|
+| `stop_reason: "refusal"` | Arrives as **HTTP 200**. Instrument separately; configure fallback per request |
+| 429 rate limit | Honor `retry-after`; ramp traffic gradually |
+| 429 from a **spend cap** | No `retry-after`. Retries keep failing. Alert |
+| 529 overloaded | Backoff, fallback model or queue |
+| Cache hit rate drops | Silent cost spike |
+
+**Trace every step with one request ID:** prompt version, retrieved chunks, tool calls + args, tokens, latency. Redact PII.
+
+???
+Reliability patterns from prep course 2: retries, fallbacks, circuit breakers.
+
+Accuracy-latency: caching, fewer reranked chunks, lower effort, faster model on easy routes, parallel tool calls; streaming only helps perceived latency. Justify with eval numbers.
+
+---
+
+class: demo
+
+.demo-banner[Exercise 3 · Integration design review · ~6 min]
+
+# Seven flaws in one IT/HR assistant
+
+- **File:** `exercises/03-integration-review.md`
+- **Design:** 47 tools on 6 MCP servers · one shared admin account · rules in the prompt · 1,800 pages in the system prompt · vacation balance from policy docs · a partner agent wrapped as a tool · final-answer logs only
+- **Do:** name the problem, the objective it violates, and the fix
+
+???
+Hits all eight D3 objectives. Reference table in the file.
+
+---
+
+class: question
+
+.q-label[Practice Q25 · D3 Integration]
+
+.stem[Technicians search with part numbers such as "XR-7741-B" and error codes. Embedding-only retrieval returns similar but wrong parts. Which change fits the query pattern?]
+
+.options[
+- **A.** Add keyword (BM25) retrieval in a hybrid setup with exact-match filters on identifiers, then rerank.
+- **B.** Switch to a larger embedding model so identifiers are encoded more precisely.
+- **C.** Increase chunk size so each chunk covers more part numbers.
+- **D.** Instruct the model to double-check that part numbers match before answering.
+]
+
+---
+
+class: answer
+
+.q-label[Practice Q25 · Answer]
+
+.correct[A · Hybrid retrieval with BM25 and exact-match filters]
+
+| Option | Pattern | Why it fails |
+|---|---|---|
+| B | Bigger model | Similarity still blurs near-identical codes |
+| C | Lossy shortcut | Larger chunks dilute relevance |
+| D | Prompt as policy | Can't verify what retrieval never returned |
+
+???
+Data shape decides retrieval: exact identifiers are a lexical problem.
+
+---
+
+class: center, middle, cue
+
+.eyebrow-label[Segment 2 complete]
+
+# Q&A + 5-minute break
+
+???
+Break. Come back for evals and governance.
+
+---
+
+class: title, divider
+
+.session-label[SEGMENT 3 · 1:00 → 1:30 · 30 MIN]
+
+# Evaluation and governance
+
+.chips[
+.chip[D4 Evaluation, Testing & Optimization · **16%**]
+.chip[D5 Governance, Safety & Risk · **14%**]
+]
+
+.footer[Lessons 04 + 05<span>Exercises 04 + 05 · eval_harness.py</span>]
+
+???
+~15 min each.
+
+---
+
+.eyebrow-label[D4 · Evaluation, Testing & Optimization · 16%]
+
+# What the exam asks
+
+.objectives[
+- Define evaluation metrics (accuracy, latency, cost, safety, security)
+- Design evaluation datasets and test frameworks using mixed methodologies
+- Conduct A/B testing and iterative improvements
+- Diagnose system issues (prompt failure, hallucinations, model mismatch)
+- Optimize token usage, latency, and cost-performance trade-offs
+- Monitor system performance using logging and observability tools
+]
+
+.source-line[Verbatim from the CCAR-P Exam Guide v1.0, Section 6]
+
+???
+Prep course rule: evals are acceptance criteria built before production code, and the gate before any model or architecture change.
+
+---
+
+# Evals are the gate
+
+| Grader | Use for | Rule |
+|---|---|---|
+| **Code-based** | Labels, JSON schema, exact match, tests | Fastest, most reliable. Prefer it |
+| **LLM judge** | Faithfulness, tone, rubric scoring | Detailed rubric · reason then score · **validate vs. humans** |
+| **Human** | Calibrating the judge, high-stakes spot checks | Gold standard. Avoid at scale |
+
+- **Criteria are measurable:** "≥ 90% score ≥ 4/5, p95 < 5 s, < $0.01", not "good summaries"
+- **Volume over hand-graded perfection.** Hold out a set you never tune on
+- **pass^k** for customer-facing agents: 75% per run over 3 runs ≈ 42%
+
+???
+From "Define success criteria and build evaluations" and "Demystifying evals for AI agents."
+
+Five metric dimensions in the blueprint: accuracy, latency, cost, safety (include false-refusal rate), security (injection success rate).
+
+A/B: hypothesis, one variable, primary + guardrail metrics, sample size up front, report effect size without overclaiming. 2 points on 60 samples is noise.
+
+---
+
+class: question
+
+.q-label[Official sample 3 · D4 Evaluation & Optimization · exam guide, Section 8]
+
+.stem[A RAG system suddenly returns confident but incorrect answers after a document refresh, while latency and model version are unchanged. What is the most likely first place to investigate?]
+
+.options[
+- **A.** The model weights have silently changed.
+- **B.** The retrieval/indexing step is returning irrelevant or stale chunks.
+- **C.** The temperature setting is too low.
+- **D.** The context window has shrunk.
+]
+
+---
+
+class: answer
+
+.q-label[Official sample 3 · Answer]
+
+.correct[B · Retrieval/indexing returns irrelevant or stale chunks]
+
+| Option | Pattern | Why it fails |
+|---|---|---|
+| A | Wrong trigger | The stem rules out a model change |
+| C | Wrong trigger | Temperature doesn't cause wrong facts after a refresh |
+| D | Wrong trigger | Windows don't shrink |
+
+*Diagnose from what changed.*
+
+???
+Guide: "a broken re-index or mismatched embeddings."
+
+Diagnosis map: after a refresh → retrieval. Fabricated specifics with good retrieval → hallucination (grounding, "I don't know", citations). After a smaller model, one category fails → model mismatch, route it. After a newer model → prompt tuned to old behavior, re-run evals.
+
+---
+
+class: dense
+
+# Optimize cost per completed task
+
+| Lever | Saves | Watch |
+|---|---|---|
+| Prompt caching | Input cost + time to first token | Static first |
+| Message Batches API | **50%** | Async, up to 24 h. Not for users waiting |
+| Model routing | Cost + latency | Verify the hard tail on evals |
+| Effort | Cost + latency | Raise only where evals show gains |
+| Output length | Output tokens cost 5× input | Tight `max_tokens`, structured output |
+| Streaming | Perceived latency only | Total time and cost unchanged |
+
+???
+Measure cost per successfully completed task, including retries and human rework. A cheap config that fails more costs more.
+
+Batch: up to 100,000 requests or 256 MB per batch; most finish in under an hour; not ZDR-eligible.
+
+---
+
+class: demo
+
+.demo-banner[Exercise 4 · Evals as the gate · ~5 min]
+
+# Should we switch to the smaller model?
+
+- **File:** `exercises/04-eval-plan.md` (contract extraction plan)
+- **Run:** `uv run exercises/scripts/eval_harness.py`
+- **Watch:** code-graded accuracy, LLM-judge score, p50 latency, cost per model
+- **Decide:** does the candidate pass your gate?
+
+???
+The harness grades a classifier with exact match and summaries with a judge on a different, stronger model. `--selftest` checks graders offline.
+
+Point out: 8 tickets is a demo. A gate needs hundreds of cases and a validated judge.
+
+---
+
+.eyebrow-label[D5 · Governance, Safety & Risk · 14%]
+
+# What the exam asks
+
+.objectives[
+- Implement guardrails and safety controls
+- Identify risks, limitations, and failure modes of LLM systems
+- Apply human-in-the-loop validation strategies
+- Ensure compliance with regulations (e.g., GDPR, HIPAA, FedRAMP)
+- Address ethical AI considerations (bias, fairness, transparency)
+]
+
+.source-line[Verbatim from the CCAR-P Exam Guide v1.0, Section 6]
+
+???
+Prep course 3's question: what stops the system from refusing a valid request, producing an unfair outcome, or taking an action no one approved?
+
+"Assuming Claude enforces a rule it was never given is the most common way a safety design will break."
+
+---
+
+class: dense
+
+# The safety stack fails closed
+
+| Layer | Control | Type |
+|---|---|---|
+| Input | Injection/jailbreak screen, PII redaction | Model-based + rules |
+| System prompt | Scope, "say I don't know" | **Guidance only** |
+| Tool calls | Least privilege, per-user authz, parameter limits, approvals | **Deterministic** |
+| Output | Schema, PII leak, grounding, policy | Both |
+| Audit | Inputs, tool calls, outputs, reviewer decisions | Deterministic |
+
+**Training reduces harm. Your application enforces your rules.** When a control errors, block or route to a human.
+
+???
+Model-based checks for fuzzy semantics (probabilistic, need evals). Deterministic checks for exact rules (cheap, auditable).
+
+Indirect injection: untrusted content in tool_result blocks, screen tool outputs, and above all limit what a hijacked agent can do. Anthropic: "no browser agent is immune."
+
+Failure modes: hallucination, injection, excessive agency, over-refusal (measure false-refusal rate), data leakage, sycophancy, cascading agent errors, bias.
+
+---
+
+# Review routing and compliance
+
+.two-col[
+<div>
+<div class="col-head blue">ROUTE REVIEW BY</div>
+<ul>
+<li><strong>Confidence</strong>, calibrated on labeled data (not self-reported)</li>
+<li><strong>Reversibility</strong> of the action</li>
+<li><strong>Cost</strong> of a wrong answer</li>
+<li>Automate + sample low risk; approve the irreversible</li>
+</ul>
+</div>
+<div>
+<div class="col-head amber">MAP EVERY OBLIGATION</div>
+<ul>
+<li>Obligation → <strong>control → owner → evidence</strong></li>
+<li><strong>GDPR:</strong> minimize, residency/transfer + DPA, human review of legal-effect decisions</li>
+<li><strong>HIPAA:</strong> BAA before PHI; check feature eligibility</li>
+<li><strong>FedRAMP High:</strong> Bedrock GovCloud or Vertex AI</li>
+</ul>
+</div>
+]
+
+*Fairness is measured by outcomes per group. Deleting a column proves nothing.*
+
+???
+Usage Policy high-risk areas: qualified human review + disclosure of AI. A new version effective Nov 12, 2026 expands to 11 areas; "wholly favorable" decisions are exempt.
+
+ZDR traps: not for Batch, Files API, Skills, code execution, MCP connector, Managed Agents. HIPAA readiness is permanent once enabled; Managed Agents and Claude Code not covered.
+
+Transparency has three audiences: users (disclosure + path to a human), regulators (documented controls and evidence), your debugging team (traces).
+
+---
+
+class: question
+
+.q-label[Practice Q41 · D5 Governance]
+
+.stem[A procurement agent approves purchase orders. Policy says orders over $10,000 need a director's approval. The rule is in the system prompt, yet logs show three violations last month. What is the best fix?]
+
+.options[
+- **A.** Restate the rule in capital letters at the top and bottom of the system prompt.
+- **B.** Enforce the threshold in the approval tool or a pre-tool check: calls over $10,000 are blocked and routed to a director's queue.
+- **C.** Log every approval over $10,000 for the monthly audit.
+- **D.** Switch to a more capable model that follows instructions more reliably.
+]
+
+---
+
+class: answer
+
+.q-label[Practice Q41 · Answer]
+
+.correct[B · Enforce the threshold in code, outside the model]
+
+| Option | Pattern | Why it fails |
+|---|---|---|
+| A | Prompt as policy | Louder is still best effort |
+| C | Watch, don't remove | Records violations after they happen |
+| D | Bigger model | Still best effort |
+
+*A rule that must always hold lives in code, permissions, or hooks.*
+
+???
+Exercise 5 (`exercises/05-safety-stack.md`) builds the full stack for a loan assistant: controls, fail behavior, routing, compliance map, fairness. Assign as homework if short on time.
+
+---
+
+class: center, middle, cue
+
+.eyebrow-label[Segment 3 complete]
+
+# Q&A
+
+---
+
+class: title, divider
+
+.session-label[SEGMENT 4 · 1:30 → 1:50 · 20 MIN]
+
+# Stakeholders and team enablement
+
+.chips[
+.chip[D6 Stakeholder Communication & Lifecycle · **14%**]
+.chip[D7 Developer Productivity & Enablement · **7%**]
+]
+
+.footer[Lessons 06 + 07<span>Exercises 06 + 07</span>]
+
+---
+
+.eyebrow-label[D6 · Stakeholder Communication & Lifecycle · 14%]
+
+# Three meetings decide whether it ships
+
+.grid-3[
+.card[
+.tag.w-tag[DISCOVERY]
+Process, baseline, volume, latency tolerance, cost of errors, data, constraints, the metric. **Write assumptions down.**
+]
+.card[
+.tag.s-tag[APPROVAL]
+Each option: **cost · risk · reversal**. A recommendation. An ADR.
+]
+.card[
+.tag.c-tag[HANDOFF]
+Diagrams, ADRs, prompt registry, **eval suite**, **runbooks**, owners.
+]
+]
+
+*Never open discovery with technology. Never promise "always correct."*
+
+???
+Objectives: structured discovery; communicate decisions and trade-offs; feedback loops and SLAs; documentation; lifecycle phases.
+
+Good SLA: p95 latency, quality floor on sampled review, fallback when degraded, breach response with a deadline.
+
+Iterate when the failure is local. Re-architect when it's structural.
+
+---
+
+# Lifecycle: plan for change
+
+| Event | Architect's move |
+|---|---|
+| Model deprecation notice (≥ 60 days) | Eval the successor · re-baseline cost and latency · migrate before retirement |
+| Eval score drop | Review trigger: diagnose, iterate, re-run evals |
+| SLA breach | Fallback, page owner, fix by deadline |
+| Procurement says "must run in our AWS" | Bedrock first; constraints before latency or cost |
+| Pilot stalls | Agree graduation criteria up front: performance, operations, risk |
+
+???
+Bedrock and Google Cloud set their own model retirement dates.
+
+Prep course 4 also covers the partner GTM motion: discovery, scenario-based demo, objection handling, joint scoping, an outcome document in the sponsor's metric.
+
+Exercise 6: role-play discovery with Claude as a non-technical VP, then write a one-page ADR.
+
+---
+
+.eyebrow-label[D7 · Developer Productivity & Enablement · 7%]
+
+# Which layer does a setting belong at?
+
+| Scope | Put here |
+|---|---|
+| **Managed** (no opt-out) | Security policy: deny rules, MCP allowlist, no bypass mode |
+| **Project** (committed) | `CLAUDE.md` conventions, `.claude/settings.json`, hooks, `.mcp.json`, skills |
+| **Local** (gitignored) | One developer's overrides |
+| **User** | Personal preferences |
+
+**CLAUDE.md is guidance. Permissions, hooks, and managed settings are enforcement.**
+
+???
+Precedence: managed → CLI → local → project → user. Permissions evaluate deny → ask → allow.
+
+CI: headless `claude -p` with JSON output and a scoped allowlist, usually through the GitHub Action. Humans approve merges; use an independent reviewer.
+
+Rollout: pilot → shared config → champions → wider rollout. Skills distributed via plugins and marketplaces. Spend limits and OTel monitoring in team setup.
+
+Ops: runbooks map symptoms to architectural causes so the team runs without the architect.
+
+---
+
+class: question
+
+.q-label[Practice Q57 · D7 Enablement]
+
+.stem[Security requires that no developer can run Claude Code in bypass-permissions mode or connect unapproved MCP servers. Where should this be configured?]
+
+.options[
+- **A.** In each repository's CLAUDE.md file.
+- **B.** In managed (enterprise) settings deployed to every machine.
+- **C.** In each developer's ~/.claude/settings.json.
+- **D.** In the team wiki's onboarding checklist.
+]
+
+---
+
+class: answer
+
+.q-label[Practice Q57 · Answer]
+
+.correct[B · Managed settings: highest precedence, no opt-out]
+
+| Option | Pattern | Why it fails |
+|---|---|---|
+| A | Prompt as policy | Guidance, not enforcement |
+| C | Wrong scope | Developers can edit their own files |
+| D | Prompt as policy | Documentation is not enforcement |
+
+???
+Exercise 7: sort ten settings into scope and mechanism.
+
+---
+
+class: center, middle, cue
+
+.eyebrow-label[Segment 4 complete]
+
+# Q&A
+
+---
+
+class: title, divider
+
+.session-label[SEGMENT 5 · 1:50 → 2:00 · 10 MIN]
+
+# Exam strategy and study plan
+
+.chips[
+.chip[All domains]
+]
+
+.footer[Lesson 08<span>60 questions · 60 Anki cards · cheatsheet</span>]
+
+---
+
+class: dense
+
+# Read the trigger, not the options
+
+| Cue in the stem | Points to |
+|---|---|
+| "only ever need" | Remove tools / permissions |
+| "must always", "never" | Code, hooks, permissions, schema |
+| "same prompt every request" | Caching, static first |
+| "overnight", "not user-facing" | Batch API |
+| "after a document refresh" | Retrieval / indexing |
+| "after switching models" | Re-run evals; mismatch or prompt drift |
+| "steps are known" | Workflow, not agent |
+| "live status", "balance" | Tool call, not RAG |
+| "across organizations" | Agent-to-agent |
+| "every developer, no opt-out" | Managed settings |
+
+???
+Time: 1 min 54 s per item. Item 21 at 40 min, item 42 at 80, item 63 at 110. Flag anything over 2.5 min.
+
+Read the last sentence first. Predict before reading options. Multiple-response: each option is its own true/false; assume all-or-nothing.
+
+---
+
+# Three weeks, weighted by the blueprint
+
+| Week | Domains | Do |
+|---|---|---|
+| 1 | D1 · D2 · D3 (49%) | Lessons 01–03 · exercises 00–03 · caching script · flashcards daily |
+| 2 | D4 · D5 (30%) | Lessons 04–05 · exercises 04–05 · eval harness · Q1–Q30 timed |
+| 3 | D6 · D7 + review (21%) | Lessons 06–08 · exercises 06–07 · Q31–Q60 timed · all 60 again |
+
+**Build one small end-to-end system with RAG, evals, and logging.** The guide recommends it.
+
+???
+Practice materials in the repo:
+- `questions/practice-questions.md` and `questions/quiz.html` (click-to-check, domain filter, score)
+- `anki/ccar-p-flashcards.apkg` (import into Anki: File → Import)
+- `cheatsheet/ccar-p-cheatsheet.pdf`
+
+Readiness: 52–60 strong, 45–51 close.
+
+---
+
+# If you remember seven things
+
+.takeaways[
+<ol>
+<li><span class="num">1</span><div class="body"><strong>Simplest pattern that works.</strong><span>Workflow before agent, agent before multi-agent, only on evidence.</span></div></li>
+<li><span class="num">2</span><div class="body"><strong>Remove capability before you guard it.</strong><span>Least privilege beats logging and confirmations.</span></div></li>
+<li><span class="num">3</span><div class="body"><strong>Enforce in code, not in the prompt.</strong><span>Permissions, hooks, schemas, validators.</span></div></li>
+<li><span class="num">4</span><div class="body"><strong>Static first, then cache.</strong><span>Exact prefix. Batch what can wait.</span></div></li>
+<li><span class="num">5</span><div class="body"><strong>Diagnose from what changed.</strong><span>Refresh → retrieval. Model swap → evals.</span></div></li>
+<li><span class="num">6</span><div class="body"><strong>Evals gate every change.</strong><span>Measured criteria, validated judges, cost per task.</span></div></li>
+<li><span class="num">7</span><div class="body"><strong>Design for the handoff.</strong><span>Cost, risk, reversal. Runbooks and owners.</span></div></li>
+</ol>
+]
+
+???
+Every official sample and practice item reduces to one of these seven.
+
+---
+
+class: title
+
+.session-label[RESOURCES · Q&A]
+
+# Thank you. Questions?
+
+- [Official Exam Guide v1.0 (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542810%2FClaude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
+- [Official prep path](https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional) · 5 courses
+- [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents) · [Contextual Retrieval](https://www.anthropic.com/news/contextual-retrieval)
+- [Course repo](https://github.com/EnkrateiaLucca/claude-architect-pro-cert) · lessons, exercises, 60 questions, 60 Anki cards
+
+.footer[Lucas Soares<span>O'Reilly Live Training</span>]
+
+???
+Certification FAQ: https://anthropic-partners.skilljar.com/page/faq-certifications
+
+Pearson VUE: https://www.pearsonvue.com/us/en/anthropic.html
+
+  </textarea>
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+  <script>
+    var slideshow = remark.create({
+      ratio: '16:9',
+      countIncrementalSlides: false,
+      highlightLanguage: 'no-highlight',
+      navigation: { scroll: false }
+    });
+  </script>
+</body>
+</html>
